@@ -260,11 +260,11 @@
 
   if (houseSvg && motionOK) {
     (function () {
-      var phases = ['ground', 'foundation', 'frame', 'roof', 'open'];
+      var wirePhases = ['ground', 'foundation', 'frame', 'roof'];
       var labels = document.querySelectorAll('.house-phase-list li');
 
-      // Prepare every path for draw-on
-      phases.forEach(function (ph) {
+      // Prepare wireframe paths for draw-on
+      wirePhases.forEach(function (ph) {
         houseSvg.querySelectorAll('.ph-' + ph + ' path').forEach(function (p) {
           var len = p.getTotalLength();
           p.style.strokeDasharray = len;
@@ -272,29 +272,50 @@
         });
       });
 
+      // Solid house starts buried below the lot (ground clip hides it)
+      gsap.set('#house-svg .house-solid', { y: 250 });
+
       var tl = gsap.timeline({
         scrollTrigger: {
           trigger: '.house-section',
-          start: 'top 55%',
-          end: 'bottom 45%',
-          scrub: 0.6
+          start: 'top 12%',
+          end: '+=1800',
+          scrub: 0.6,
+          pin: true
         }
       });
 
-      phases.forEach(function (ph, i) {
-        var sel = '#house-svg .ph-' + ph + ' path';
-        tl.to(sel, {
+      // 1) Blueprint draws itself
+      wirePhases.forEach(function (ph, i) {
+        tl.to('#house-svg .ph-' + ph + ' path', {
           strokeDashoffset: 0,
-          duration: ph === 'frame' ? 2.2 : 1.4,
-          stagger: 0.06,
+          duration: ph === 'frame' ? 2.0 : 1.3,
+          stagger: 0.05,
           ease: 'none',
           onStart: function () { if (labels[i]) labels[i].classList.add('on'); },
           onReverseComplete: function () { if (labels[i]) labels[i].classList.remove('on'); }
         });
       });
 
-      // Windows glow last
-      tl.to('#house-svg .glow-pane', { opacity: 0.85, duration: 1.2, stagger: 0.12, ease: 'power1.in' });
+      // 2) The real home rises out of the ground; blueprint fades to a ghost
+      tl.to('#house-svg .house-wire', { opacity: 0.18, duration: 2.2, ease: 'none' }, '>');
+      tl.to('#house-svg .house-solid', {
+        y: 0,
+        duration: 2.6,
+        ease: 'power2.out',
+        onStart: function () { if (labels[4]) labels[4].classList.add('on'); },
+        onReverseComplete: function () { if (labels[4]) labels[4].classList.remove('on'); }
+      }, '<');
+
+      // 3) Lights on
+      tl.to('#house-svg .glow-pane', {
+        opacity: 0.9,
+        duration: 1.0,
+        stagger: 0.14,
+        ease: 'power1.in',
+        onStart: function () { if (labels[5]) labels[5].classList.add('on'); },
+        onReverseComplete: function () { if (labels[5]) labels[5].classList.remove('on'); }
+      });
     })();
   }
 
