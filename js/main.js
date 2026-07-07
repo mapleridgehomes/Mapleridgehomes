@@ -22,10 +22,9 @@
      Smooth scroll (Lenis) — desktop-feel scrolling, synced to GSAP
      ------------------------------------------------------------------ */
   if (motionOK && typeof window.Lenis !== 'undefined') {
-    var lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 0.95 });
+    var lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 0.95, autoRaf: true });
+    window.__lenis = lenis;
     lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0);
   }
 
   /* ------------------------------------------------------------------
@@ -85,6 +84,8 @@
       if (mark) ctl.to(mark, { opacity: 1, duration: 0.35, ease: 'power1.out' })
                    .to(mark, { opacity: 0, duration: 0.3, delay: 0.25 });
       ctl.to(curtain, { yPercent: -100, duration: 0.65, ease: 'power3.inOut' });
+      // Safety: never leave the page covered if rAF stalls (throttled tab)
+      setTimeout(function () { curtain.classList.add('done'); }, 3200);
     }
   }
 
@@ -162,7 +163,8 @@
   }
 
   /* ------------------------------------------------------------------
-     HOME — leaf particle assembly
+     HOME — leaves on the wind: real miniature leaves tumble in and
+     settle while the brand leaf materializes. No dots, no tech look.
      ------------------------------------------------------------------ */
   var canvas = document.getElementById('leaf-canvas');
 
@@ -178,79 +180,180 @@
       var img = new Image();
       img.src = 'images/leaf.png';
       img.onload = function () {
-        // Sample opaque pixels of the leaf into particle targets
-        var off = document.createElement('canvas');
-        var scale = Math.min(cw / img.width, ch / img.height) * 0.92;
-        var lw = Math.round(img.width * scale), lh = Math.round(img.height * scale);
-        off.width = lw; off.height = lh;
-        var octx = off.getContext('2d');
-        octx.drawImage(img, 0, 0, lw, lh);
-        var data = octx.getImageData(0, 0, lw, lh).data;
-
         var isMobile = window.matchMedia('(max-width: 700px)').matches;
-        var STEP = isMobile ? 5 : 4;
-        var ox = (cw - lw) / 2, oy = (ch - lh) / 2;
-        var targets = [];
+        var COUNT = isMobile ? 16 : 24;
+        var AR = img.height / img.width;
 
-        for (var y = 0; y < lh; y += STEP) {
-          for (var x = 0; x < lw; x += STEP) {
-            var a = data[(y * lw + x) * 4 + 3];
-            if (a > 140) targets.push({ x: ox + x, y: oy + y });
-          }
+        // Each sprite: a small real leaf blowing in from off-canvas,
+        // swaying and tumbling like a falling leaf, then settling/fading
+        // near the centre as the brand mark appears.
+        var sprites = [];
+        for (var i = 0; i < COUNT; i++) {
+          var fromLeft = Math.random() < 0.65;
+          sprites.push({
+            sx: fromLeft ? -60 - Math.random() * cw * 0.3 : cw * (0.2 + Math.random() * 0.6),
+            sy: fromLeft ? ch * (Math.random() * 0.5 - 0.15) : -70 - Math.random() * 60,
+            tx: cw * (0.28 + Math.random() * 0.44),
+            ty: ch * (0.30 + Math.random() * 0.42),
+            w: 13 + Math.random() * 17,
+            rot: Math.random() * Math.PI * 2,
+            spin: (Math.random() - 0.5) * 4.5,
+            sway: 16 + Math.random() * 26,
+            f: 2.2 + Math.random() * 2.4,
+            d0: Math.random() * 0.32,
+            seed: Math.random() * Math.PI * 2
+          });
         }
 
-        var COLORS = ['#7A5C42', '#C2B49A', '#8A8C7A', '#66492F'];
-        var parts = targets.map(function (t) {
-          return {
-            tx: t.x, ty: t.y,
-            x: cw / 2 + (Math.random() - 0.5) * cw * 2.2,
-            y: ch / 2 + (Math.random() - 0.5) * ch * 2.6,
-            r: Math.random() * 1.3 + 0.6,
-            c: COLORS[(Math.random() * COLORS.length) | 0],
-            seed: Math.random() * Math.PI * 2
-          };
-        });
-
-        var state = { p: 0, t: 0 };
+        var state = { p: 0 };
 
         function draw() {
           ctx.clearRect(0, 0, cw, ch);
-          var breathe = 1.3;
-          for (var i = 0; i < parts.length; i++) {
-            var pt = parts[i];
-            var px = pt.x + (pt.tx - pt.x) * state.p;
-            var py = pt.y + (pt.ty - pt.y) * state.p;
-            px += Math.sin(state.t + pt.seed) * breathe * state.p;
-            py += Math.cos(state.t * 0.8 + pt.seed) * breathe * state.p;
-            ctx.globalAlpha = 0.35 + 0.65 * state.p;
-            ctx.fillStyle = pt.c;
-            ctx.beginPath();
-            ctx.arc(px, py, pt.r, 0, 6.2832);
-            ctx.fill();
+          for (var i = 0; i < sprites.length; i++) {
+            var sp = sprites[i];
+            var t = (state.p - sp.d0) / (1 - sp.d0);
+            if (t <= 0) continue;
+            t = Math.min(t, 1);
+            var e = 1 - Math.pow(1 - t, 3); // ease-out drift
+            var x = sp.sx + (sp.tx - sp.sx) * e + Math.sin(t * sp.f * Math.PI + sp.seed) * sp.sway * (1 - e);
+            var y = sp.sy + (sp.ty - sp.sy) * e + Math.sin(t * sp.f * 0.7 * Math.PI + sp.seed) * 10 * (1 - e);
+            var alpha = t < 0.12 ? t / 0.12 : (t > 0.72 ? Math.max(0, 1 - (t - 0.72) / 0.28) : 1);
+            var w = sp.w, h = w * AR;
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(sp.rot + sp.spin * t + Math.sin(t * sp.f * Math.PI + sp.seed) * 0.5 * (1 - e));
+            ctx.globalAlpha = alpha * 0.9;
+            ctx.drawImage(img, -w / 2, -h / 2, w, h);
+            ctx.restore();
           }
         }
 
         gsap.to(state, {
           p: 1,
-          duration: 2.4,
-          ease: 'power3.inOut',
-          delay: 0.9,
-          onUpdate: draw
+          duration: 3.4,
+          ease: 'none',
+          delay: 0.55,
+          onUpdate: draw,
+          onComplete: function () { ctx.clearRect(0, 0, cw, ch); }
         });
 
-        // Idle breathing after assembly
-        gsap.ticker.add(function () {
-          state.t += 0.016;
-          if (state.p > 0.01) draw();
-        });
+        // The brand leaf materializes as the blown leaves settle
+        gsap.fromTo('.hero-leaf-real',
+          { opacity: 0, scale: 0.9, filter: 'blur(10px)' },
+          { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.9, ease: 'power2.out', delay: 2.1 }
+        );
 
-        // Dissolve slightly on scroll away
-        gsap.to(canvas, {
-          opacity: 0.15,
-          scrollTrigger: { trigger: canvas, start: 'top top', end: '+=500', scrub: true }
+        // Gentle organic float, forever
+        gsap.to('.hero-leaf-wrap', {
+          y: 9,
+          rotation: 1.2,
+          duration: 3.6,
+          yoyo: true,
+          repeat: -1,
+          ease: 'sine.inOut',
+          delay: 4.0
         });
       };
     })();
+  }
+
+  /* ------------------------------------------------------------------
+     HOME — continuous scroll choreography
+     ------------------------------------------------------------------ */
+  if (motionOK && isHome) {
+    // A thread draws down the page with your scroll — ties every act together
+    var thread = document.querySelector('.scroll-thread');
+    if (thread) {
+      gsap.fromTo(thread, { scaleY: 0 }, {
+        scaleY: 1,
+        ease: 'none',
+        scrollTrigger: { trigger: 'main', start: 'top top', end: 'bottom bottom', scrub: 0.4 }
+      });
+    }
+
+    // Hero: cinematic settle on load, then content drifts as you leave
+    gsap.fromTo('.hero-film .hero-img', { scale: 1.08 }, { scale: 1, duration: 2.2, ease: 'power2.out' });
+    gsap.to('.hero-film .hero-inner', {
+      yPercent: -18,
+      opacity: 0.2,
+      ease: 'none',
+      scrollTrigger: { trigger: '.hero-film', start: 'top top', end: 'bottom 30%', scrub: true }
+    });
+
+    // The film: full-screen slides hand off with scale + crossfade as you scroll
+    var slides = gsap.utils.toArray('.film-slide');
+    if (slides.length) {
+      var film = document.querySelector('.film');
+      film.style.height = (slides.length * 120) + 'vh';
+      var dots = document.querySelectorAll('.film-progress span');
+
+      slides.forEach(function (slide, i) {
+        // every slide's image slowly zooms while it owns the screen
+        gsap.fromTo(slide.querySelector('.slide-img'), { scale: 1.12 }, {
+          scale: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: film,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: true
+          }
+        });
+      });
+
+      // Deterministic crossfade: only adjacent slides ever blend, titles
+      // hold while a slide owns the screen and hand off cleanly.
+      var clamp01 = function (v) { return Math.max(0, Math.min(1, v)); };
+
+      ScrollTrigger.create({
+        trigger: film,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+        onUpdate: function (self) {
+          var pos = self.progress * (slides.length - 1);
+          slides.forEach(function (slide, i) {
+            var d = Math.abs(pos - i);
+            slide.style.opacity = clamp01(1 - d / 0.55);
+            slide.style.zIndex = d < 0.5 ? 2 : 1;
+            var title = slide.querySelector('.film-title');
+            title.style.opacity = clamp01(1 - d / 0.38);
+            title.style.transform = 'translateY(' + ((pos - i) * -34) + 'px)';
+          });
+          var idx = Math.round(pos);
+          dots.forEach(function (d, di) { d.classList.toggle('on', di === idx); });
+        }
+      });
+    }
+
+    // Service titles drift laterally with scroll — nothing sits still
+    gsap.utils.toArray('.service-row').forEach(function (row, i) {
+      gsap.fromTo(row.querySelector('.name'),
+        { x: i % 2 ? -28 : 28 },
+        {
+          x: i % 2 ? 28 : -28,
+          ease: 'none',
+          scrollTrigger: { trigger: row, start: 'top bottom', end: 'bottom top', scrub: true }
+        }
+      );
+    });
+
+    // Marquee reacts to scroll velocity — faster as you move
+    var track = document.querySelector('.marquee-track');
+    if (track) {
+      track.style.animation = 'none';
+      var loop = gsap.to(track, { xPercent: -50, repeat: -1, ease: 'none', duration: 30 });
+      var boost = 1;
+      ScrollTrigger.create({
+        onUpdate: function (self) {
+          boost = 1 + Math.min(Math.abs(self.getVelocity()) / 900, 4);
+        }
+      });
+      gsap.ticker.add(function () {
+        loop.timeScale(gsap.utils.interpolate(loop.timeScale(), boost, 0.06));
+        boost = gsap.utils.interpolate(boost, 1, 0.03);
+      });
+    }
   }
 
   /* ------------------------------------------------------------------
@@ -298,7 +401,8 @@
       });
 
       // 2) The real home rises out of the ground; blueprint fades to a ghost
-      tl.to('#house-svg .house-wire', { opacity: 0.18, duration: 2.2, ease: 'none' }, '>');
+      gsap.set('#house-svg .ground-solid', { opacity: 0 });
+      tl.to('#house-svg .house-wire', { opacity: 0.16, duration: 2.2, ease: 'none' }, '>');
       tl.to('#house-svg .house-solid', {
         y: 0,
         duration: 2.6,
@@ -306,16 +410,36 @@
         onStart: function () { if (labels[4]) labels[4].classList.add('on'); },
         onReverseComplete: function () { if (labels[4]) labels[4].classList.remove('on'); }
       }, '<');
+      tl.to('#house-svg .ground-solid', { opacity: 1, duration: 1.6, ease: 'none' }, '<+0.6');
 
-      // 3) Lights on
+      // 3) Lights on — windows glow, the fire pit catches, hotspots go live
+      var flameLoop = gsap.timeline({ repeat: -1, yoyo: true, paused: true })
+        .to('#house-svg .fire-flame', { scaleY: 1.25, scaleX: 0.9, duration: 0.35, ease: 'sine.inOut' })
+        .to('#house-svg .fire-flame', { scaleY: 0.9, scaleX: 1.08, duration: 0.28, ease: 'sine.inOut' });
+
       tl.to('#house-svg .glow-pane', {
-        opacity: 0.9,
+        opacity: 0.85,
         duration: 1.0,
-        stagger: 0.14,
+        stagger: 0.12,
         ease: 'power1.in',
         onStart: function () { if (labels[5]) labels[5].classList.add('on'); },
         onReverseComplete: function () { if (labels[5]) labels[5].classList.remove('on'); }
       });
+      tl.to('#house-svg .fire-flame', {
+        fillOpacity: function (i) { return i === 0 ? 0.85 : 0.65; },
+        duration: 0.8,
+        ease: 'power1.in',
+        onComplete: function () {
+          flameLoop.play();
+          var hs = houseSvg.querySelector('.hotspots');
+          if (hs) hs.classList.add('live');
+        },
+        onReverseComplete: function () {
+          flameLoop.pause();
+          var hs = houseSvg.querySelector('.hotspots');
+          if (hs) hs.classList.remove('live');
+        }
+      }, '<+0.4');
     })();
   }
 

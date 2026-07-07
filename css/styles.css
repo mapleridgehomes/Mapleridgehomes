@@ -387,16 +387,50 @@ body:not(.theme-dark) .site-nav:not(.scrolled) .lockup .lockup-text { color: var
   isolation: isolate;
 }
 
-#leaf-canvas {
-  width: min(300px, 56vw);
-  height: min(240px, 45vw);
-  display: block;
+.hero-leaf-wrap {
+  position: relative;
+  width: min(320px, 60vw);
+  height: min(230px, 44vw);
   margin: 0 auto 1.2rem;
 }
 
+#leaf-canvas {
+  position: absolute;
+  inset: -30% -40%;
+  width: 180%;
+  height: 160%;
+  display: block;
+}
+
+.hero-leaf-real {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(200px, 40vw);
+  opacity: 0;
+}
+
 .reduced-motion #leaf-canvas { display: none; }
-.hero-leaf-static { display: none; width: min(190px, 40vw); margin: 0 auto 1.6rem; }
-.reduced-motion .hero-leaf-static { display: block; }
+.reduced-motion .hero-leaf-real { opacity: 1; }
+
+/* Continuous scroll thread (homepage) */
+main { position: relative; }
+
+.scroll-thread {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: max(calc(var(--gutter) / 2), 14px);
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--wood-brown) 6%, var(--wood-brown) 94%, transparent);
+  opacity: 0.35;
+  transform: scaleY(0);
+  transform-origin: top;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.reduced-motion .scroll-thread { display: none; }
 
 .hero-dark h1 {
   font-size: var(--display-xl);
@@ -449,6 +483,133 @@ body:not(.theme-dark) .site-nav:not(.scrolled) .lockup .lockup-text { color: var
 @media (max-width: 700px), (max-height: 760px) {
   .scroll-cue { display: none; }
 }
+
+/* --------------------------------------------------------------------------
+   HOME — cinematic photo hero + film slides
+   -------------------------------------------------------------------------- */
+.hero-film { min-height: 100svh; align-items: flex-end; }
+
+.hero-film .hero-img { will-change: transform; }
+
+.hero-film .hero-inner { padding-bottom: 4.5rem; }
+
+.hero-film .hero-sub { margin-bottom: 2rem; }
+
+.film { position: relative; }
+
+.film-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.film-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.film-slide:first-child { opacity: 1; }
+
+.film-slide .slide-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+.film-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(42, 46, 48, 0.72), rgba(42, 46, 48, 0.06) 45%);
+}
+
+.film-title {
+  position: absolute;
+  left: var(--gutter);
+  bottom: 3.2rem;
+  z-index: 2;
+  max-width: 80%;
+}
+
+.film-title h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 5vw, 3.2rem);
+  color: var(--cream);
+  margin-bottom: 0.3rem;
+}
+
+.film-title p {
+  color: var(--taupe);
+  font-size: var(--small);
+  letter-spacing: 0.12em;
+  margin-bottom: 0.9rem;
+}
+
+.film-progress {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 3.4rem;
+  z-index: 2;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.film-progress span {
+  width: 34px;
+  height: 2px;
+  background-color: rgba(194, 180, 154, 0.3);
+}
+
+.film-progress span.on { background-color: var(--wood-brown); }
+
+/* --------------------------------------------------------------------------
+   Interactive house hotspots
+   -------------------------------------------------------------------------- */
+#house-svg .hotspots { opacity: 0; pointer-events: none; transition: opacity 0.6s var(--ease); }
+#house-svg .hotspots.live { opacity: 1; pointer-events: auto; }
+
+.hotspot { cursor: pointer; outline: none; }
+
+.hotspot .hs-dot { fill: var(--cream); }
+
+.hotspot .hs-ring {
+  fill: none;
+  stroke: var(--taupe);
+  stroke-width: 1;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: hsPulse 2.6s var(--ease) infinite;
+}
+
+@keyframes hsPulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  70% { transform: scale(2.6); opacity: 0; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.hotspot .hs-pill { opacity: 0; transition: opacity 0.3s var(--ease); pointer-events: none; }
+.hotspot:hover .hs-pill, .hotspot:focus .hs-pill { opacity: 1; }
+.hotspot:hover .hs-dot, .hotspot:focus .hs-dot { fill: var(--taupe); }
+.hotspot .hs-pill text { font-family: var(--font-body); font-weight: 700; }
+
+.reduced-motion .hotspot .hs-ring { animation: none; }
+.reduced-motion #house-svg .hotspots { opacity: 1; pointer-events: auto; }
+
+.house-hint {
+  margin-top: 1.4rem;
+  font-size: var(--tiny);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+
+.fire-flame { transform-origin: 500px 706px; }
+.reduced-motion .fire-flame { fill-opacity: 0.8 !important; }
 
 /* --------------------------------------------------------------------------
    HOME — Act 2: house build
