@@ -24,7 +24,7 @@ Shared assets: `css/styles.css` (single stylesheet), `js/main.js` (all animation
 
 ## Decisions made during the build (flag if wrong)
 
-- **Phone number:** the site uses **226-455-8076** as specified in the build prompt. Note the standard Maple Ridge email signature uses 705-279-0545 — if the site should show the 705 number (or both), it's a find-and-replace across all 7 pages (`226-455-8076` and `tel:2264558076`).
+- **Phone number:** the site uses **705-279-0545** (the standard Maple Ridge business line). The 226-455-8076 number from the original build prompt was removed at Mitchell's direction on July 6, 2026.
 - **SEO meta descriptions contain no warranty language** (per Maple Ridge operating rules). The Installations meta description from the spec was adjusted; warranty copy remains on-page everywhere the spec calls for it.
 - **Logo on dark nav:** no reversed logo variant existed, so one was generated from the transparent master (wordmark recolored to Cream, leaf kept Wood Brown) — `images/logo-reversed.png`. Favicon generated from the leaf mark.
 - **Photos:** 15 photos selected from 31 Marni Lane (exteriors/drone) and the Brand Identity portfolio folder (interiors, tile, showers), optimized to max 1200px / under 300KB each.
