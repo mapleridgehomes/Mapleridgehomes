@@ -155,16 +155,22 @@
       ease: 'power2.out'
     }, '-=0.15');
 
-    // THREE HOMES RISING (Home page): panes rise from below the fold
+    // THREE HOMES RISING (Home page): each house is revealed from the
+    // ground line upward — the lawn stays fixed and the house grows up
+    // out of the lot. A top-inset clip on each pane starts at the ground
+    // line (bottom ~38% of the frame visible), then sweeps up to reveal
+    // the house bottom-to-top.
     if (isHome) {
-      gsap.from('.hero-media .hero-pane', {
-        y: 120,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: 'power2.out',
-        delay: 0.35
-      });
+      gsap.fromTo('.hero-media .hero-pane',
+        { clipPath: 'inset(62% 0% 0% 0%)' },
+        {
+          clipPath: 'inset(0% 0% 0% 0%)',
+          duration: 1.4,
+          stagger: 0.15,
+          ease: 'power2.out',
+          delay: 0.35
+        }
+      );
     }
   }
 
