@@ -78,14 +78,25 @@
       curtain.classList.add('done');
     } else {
       var mark = curtain.querySelector('img');
+      var count = curtain.querySelector('.pre-count');
       var ctl = gsap.timeline({
         onComplete: function () { curtain.classList.add('done'); }
       });
-      if (mark) ctl.to(mark, { opacity: 1, duration: 0.35, ease: 'power1.out' })
-                   .to(mark, { opacity: 0, duration: 0.3, delay: 0.25 });
-      ctl.to(curtain, { yPercent: -100, duration: 0.65, ease: 'power3.inOut' });
+      if (mark) ctl.to(mark, { opacity: 1, duration: 0.4, ease: 'power1.out' }, 0);
+      if (count) {
+        var cobj = { v: 0 };
+        ctl.to(cobj, {
+          v: 100,
+          duration: 1.35,
+          ease: 'power2.inOut',
+          onUpdate: function () {
+            count.textContent = String(Math.round(cobj.v)).padStart(2, '0');
+          }
+        }, 0);
+      }
+      ctl.to(curtain, { yPercent: -100, duration: 0.7, ease: 'power3.inOut' }, '+=0.15');
       // Safety: never leave the page covered if rAF stalls (throttled tab)
-      setTimeout(function () { curtain.classList.add('done'); }, 3200);
+      setTimeout(function () { curtain.classList.add('done'); }, 3600);
     }
   }
 
@@ -124,20 +135,27 @@
      Kinetic headline reveal: wrap words, mask-rise them in
      ------------------------------------------------------------------ */
   function splitWords(el) {
-    var text = el.textContent.trim();
-    el.setAttribute('aria-label', text);
+    // Collect words, remembering which came from italic (.it) spans
+    var words = [];
+    Array.prototype.forEach.call(el.childNodes, function (node) {
+      var italic = node.nodeType === 1 && node.classList && node.classList.contains('it');
+      (node.textContent || '').split(/\s+/).forEach(function (word) {
+        if (word) words.push({ t: word, it: italic });
+      });
+    });
+    el.setAttribute('aria-label', words.map(function (w) { return w.t; }).join(' '));
     el.textContent = '';
     el.classList.add('kinetic');
-    text.split(/\s+/).forEach(function (word, i, arr) {
+    words.forEach(function (word, i) {
       var w = document.createElement('span');
-      w.className = 'w';
+      w.className = 'w' + (word.it ? ' it' : '');
       w.setAttribute('aria-hidden', 'true');
       var wi = document.createElement('span');
       wi.className = 'wi';
-      wi.textContent = word;
+      wi.textContent = word.t;
       w.appendChild(wi);
       el.appendChild(w);
-      if (i < arr.length - 1) el.appendChild(document.createTextNode(' '));
+      if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
     });
     return el.querySelectorAll('.wi');
   }
@@ -271,60 +289,28 @@
       });
     }
 
-    // Hero: cinematic settle on load, then content drifts as you leave
-    gsap.fromTo('.hero-film .hero-img', { scale: 1.08 }, { scale: 1, duration: 2.2, ease: 'power2.out' });
-    gsap.to('.hero-film .hero-inner', {
-      yPercent: -18,
-      opacity: 0.2,
-      ease: 'none',
-      scrollTrigger: { trigger: '.hero-film', start: 'top top', end: 'bottom 30%', scrub: true }
-    });
+    // Chapters: every photo owns a full-screen scroll-zoom section.
+    // The image settles from 1.14 to 1 as you scroll through, the title
+    // drifts, and the next chapter slides over — one continuous film.
+    gsap.utils.toArray('.chapter').forEach(function (ch) {
+      var img = ch.querySelector('.ch-img');
+      var title = ch.querySelector('.ch-title');
 
-    // The film: full-screen slides hand off with scale + crossfade as you scroll
-    var slides = gsap.utils.toArray('.film-slide');
-    if (slides.length) {
-      var film = document.querySelector('.film');
-      film.style.height = (slides.length * 120) + 'vh';
-      var dots = document.querySelectorAll('.film-progress span');
+      gsap.fromTo(img, { scale: 1.14 }, {
+        scale: 1,
+        ease: 'none',
+        scrollTrigger: { trigger: ch, start: 'top bottom', end: 'bottom top', scrub: true }
+      });
 
-      slides.forEach(function (slide, i) {
-        // every slide's image slowly zooms while it owns the screen
-        gsap.fromTo(slide.querySelector('.slide-img'), { scale: 1.12 }, {
-          scale: 1,
+      if (title) {
+        gsap.fromTo(title, { yPercent: 0 }, {
+          yPercent: -30,
+          opacity: 0.25,
           ease: 'none',
-          scrollTrigger: {
-            trigger: film,
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: true
-          }
+          scrollTrigger: { trigger: ch, start: 'bottom 90%', end: 'bottom 30%', scrub: true }
         });
-      });
-
-      // Deterministic crossfade: only adjacent slides ever blend, titles
-      // hold while a slide owns the screen and hand off cleanly.
-      var clamp01 = function (v) { return Math.max(0, Math.min(1, v)); };
-
-      ScrollTrigger.create({
-        trigger: film,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: true,
-        onUpdate: function (self) {
-          var pos = self.progress * (slides.length - 1);
-          slides.forEach(function (slide, i) {
-            var d = Math.abs(pos - i);
-            slide.style.opacity = clamp01(1 - d / 0.55);
-            slide.style.zIndex = d < 0.5 ? 2 : 1;
-            var title = slide.querySelector('.film-title');
-            title.style.opacity = clamp01(1 - d / 0.38);
-            title.style.transform = 'translateY(' + ((pos - i) * -34) + 'px)';
-          });
-          var idx = Math.round(pos);
-          dots.forEach(function (d, di) { d.classList.toggle('on', di === idx); });
-        }
-      });
-    }
+      }
+    });
 
     // Service titles drift laterally with scroll — nothing sits still
     gsap.utils.toArray('.service-row').forEach(function (row, i) {

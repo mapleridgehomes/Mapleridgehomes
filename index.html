@@ -8,12 +8,19 @@
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="home" class="theme-dark">
 
-  <div class="curtain"><img src="images/leaf.png" alt=""></div>
+  <div class="curtain">
+    <div class="pre-inner">
+      <img src="images/leaf.png" alt="" style="height:44px;opacity:0;">
+      <div class="pre-rule"></div>
+      <div class="pre-name">Maple Ridge Homes</div>
+    </div>
+    <div class="pre-count">00</div>
+  </div>
   <div class="cursor-dot" aria-hidden="true"></div>
 
   <!-- ============ NAVIGATION ============ -->
@@ -55,46 +62,78 @@
   <main>
     <div class="scroll-thread" aria-hidden="true"></div>
 
-    <!-- ============ ACT 1 — CINEMATIC HERO ============ -->
-    <header class="hero-photo hero-film">
-      <div class="hero-img" style="background-image: url('images/film-hero.jpg');"></div>
-      <div class="hero-inner">
-        <span class="kicker">Second-Generation Builder — Simcoe County</span>
-        <h1 data-kinetic data-kinetic-delay="0.55">Exceeding Excellence to Live Your Dream.</h1>
-        <p class="hero-sub">Homes, renovations, and premium installations — planned properly and delivered clean.</p>
-        <a href="#contact" class="btn">Book a Consultation <span class="arrow">&rarr;</span></a>
+    <!-- ============ CH 0 — HERO ============ -->
+    <section class="chapter ch-hero">
+      <div class="ch-sticky">
+        <div class="ch-img" style="background-image: url('images/film-hero.jpg');"></div>
+        <div class="ch-meta">44.43&deg; N &mdash; Springwater, ON<br>Second-Generation Builder</div>
+        <div class="ch-title">
+          <span class="kicker">Maple Ridge Homes</span>
+          <h1 data-kinetic data-kinetic-delay="0.4">Exceeding <span class="it">Excellence</span> to Live Your <span class="it">Dream.</span></h1>
+          <a href="#contact" class="btn">Book a Consultation <span class="arrow">&rarr;</span></a>
+        </div>
+        <div class="scroll-cue">Scroll</div>
       </div>
-      <div class="scroll-cue">Scroll</div>
-    </header>
+    </section>
 
-    <!-- ============ ACT 2 — THE FILM ============ -->
-    <section class="film" aria-label="Featured work">
-      <div class="film-stage">
-        <div class="film-slide">
-          <div class="slide-img" style="background-image: url('images/film-02.jpg');"></div>
-          <div class="film-title">
-            <h3>Built for the Long Evenings</h3>
-            <p>Custom build — Springwater, ON</p>
-            <a href="build-a-home.html" class="text-link">See How We Build &rarr;</a>
-          </div>
+    <!-- ============ CH 1 — THE PROW HOUSE ============ -->
+    <section class="chapter">
+      <div class="ch-sticky">
+        <div class="ch-img" style="background-image: url('images/film-01.jpg');"></div>
+        <div class="ch-meta">Custom Build &mdash; Springwater</div>
+        <div class="ch-title">
+          <h2 data-kinetic data-kinetic-scroll>The <span class="it">Prow</span> House</h2>
+          <p class="ch-sub">Cathedral glass, cedar &amp; board-and-batten &mdash; design to keys.</p>
+          <a href="build-a-home.html" class="text-link">See How We Build &rarr;</a>
         </div>
-        <div class="film-slide">
-          <div class="slide-img" style="background-image: url('images/film-01.jpg');"></div>
-          <div class="film-title">
-            <h3>The Prow House</h3>
-            <p>Full custom build — cathedral glass, cedar &amp; board-and-batten</p>
-            <a href="build-a-home.html" class="text-link">See How We Build &rarr;</a>
-          </div>
+        <div class="ch-index">01 <small>/ 03</small></div>
+      </div>
+    </section>
+
+    <!-- ============ EDITORIAL — SERVICES ============ -->
+    <section class="edit-split">
+      <div class="container es-grid">
+        <div>
+          <span class="kicker">What We Do</span>
+          <p class="es-lede">From first <span class="it">drawing</span> to final <span class="it">walkthrough.</span></p>
         </div>
-        <div class="film-slide">
-          <div class="slide-img" style="background-image: url('images/film-04.jpg');"></div>
-          <div class="film-title">
-            <h3>Black Oak Kitchen</h3>
-            <p>Full kitchen — quartz waterfall island, white oak, brass</p>
-            <a href="renovations.html" class="text-link">See Our Renovations &rarr;</a>
-          </div>
+        <ul class="es-list stagger-group">
+          <li><a href="build-a-home.html">
+            <span class="es-num">01</span><span class="es-name">Home Building</span><span class="es-go">&rarr;</span>
+            <span class="es-desc">The full build, managed with precision and accountability.</span>
+          </a></li>
+          <li><a href="renovations.html">
+            <span class="es-num">02</span><span class="es-name">Renovations</span><span class="es-go">&rarr;</span>
+            <span class="es-desc">Kitchens, bathrooms, basements &mdash; planned properly, delivered clean.</span>
+          </a></li>
+          <li><a href="installations.html">
+            <span class="es-num">03</span><span class="es-name">Installations</span><span class="es-go">&rarr;</span>
+            <span class="es-desc">Tile, flooring, waterproofing. Premium systems, real warranties.</span>
+          </a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ CH 2 — FIRST LIGHT ============ -->
+    <section class="chapter">
+      <div class="ch-sticky">
+        <div class="ch-img" style="background-image: url('images/film-03.jpg');"></div>
+        <div class="ch-meta">Dusk &mdash; Simcoe County</div>
+        <div class="ch-title">
+          <h2 data-kinetic data-kinetic-scroll>Built for the <span class="it">Long</span> Evenings</h2>
+          <p class="ch-sub">Every detail planned on paper before it&rsquo;s built on site.</p>
+          <a href="process.html" class="text-link">Our Process &rarr;</a>
         </div>
-        <div class="film-progress" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+        <div class="ch-index">02 <small>/ 03</small></div>
+      </div>
+    </section>
+
+    <!-- ============ STATEMENT + HOUSE ============ -->
+    <section class="statement">
+      <div class="container">
+        <span class="kicker">How We Build</span>
+        <p class="big" data-kinetic data-kinetic-scroll>Build where the <span class="it">land</span> tells you to. Finish like you <span class="it">mean</span> it.</p>
+        <p class="st-sub">Scope, sequence, and materials are locked before the first shovel &mdash; so what we build matches what we promised. Backed in writing, every time.</p>
       </div>
     </section>
 
@@ -346,44 +385,17 @@
       </div>
     </section>
 
-    <!-- ============ ACT 3 — MANIFESTO ============ -->
-    <section class="manifesto">
-      <div class="container">
-        <p data-scrub-words>We build the right way, not the fast way. No shortcuts on the things that matter — and a written warranty on everything we finish.</p>
-        <div class="attribution">Mitchell Flach — Owner, Maple Ridge Homes</div>
-      </div>
-    </section>
-
-    <!-- ============ ACT 4 — SERVICES ============ -->
-    <section class="services">
-      <div class="container" style="padding-bottom: 2rem;">
-        <span class="kicker">What We Do</span>
-      </div>
-      <div class="services-list">
-        <a class="service-row" href="build-a-home.html">
-          <span class="container-row">
-            <span class="num">01</span>
-            <span class="name">Home Building</span>
-            <span class="go">&rarr;</span>
-            <span class="desc">From design to keys — the full build, managed with precision and accountability.</span>
-          </span>
-        </a>
-        <a class="service-row" href="renovations.html">
-          <span class="container-row">
-            <span class="num">02</span>
-            <span class="name">Renovations</span>
-            <span class="go">&rarr;</span>
-            <span class="desc">Kitchens, bathrooms, and basements. Properly planned, tightly managed, cleanly delivered.</span>
-          </span>
-        </a>
-        <a class="service-row" href="installations.html">
-          <span class="container-row">
-            <span class="num">03</span>
-            <span class="name">Installations</span>
-            <span class="go">&rarr;</span>
-            <span class="desc">Tile, flooring, waterproofing, and finish work. Premium systems, real warranties.</span>
-          </span>
-        </a>
+    <!-- ============ CH 3 — THE FIRE ============ -->
+    <section class="chapter">
+      <div class="ch-sticky">
+        <div class="ch-img" style="background-image: url('images/film-02.jpg');"></div>
+        <div class="ch-meta">Evenings &mdash; Springwater</div>
+        <div class="ch-title">
+          <h2 data-kinetic data-kinetic-scroll>Yours for <span class="it">Life.</span></h2>
+          <p class="ch-sub">Three-year workmanship warranty on everything we finish.</p>
+          <a href="testimonials.html" class="text-link">See Our Work &rarr;</a>
+        </div>
+        <div class="ch-index">03 <small>/ 03</small></div>
       </div>
     </section>
 
