@@ -13,17 +13,20 @@
 </head>
 <body data-page="about">
 
+  <div class="cursor-dot" aria-hidden="true"></div>
+
   <!-- ============ NAVIGATION ============ -->
-  <nav class="site-nav">
+  <nav class="site-nav scrolled">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Maple Ridge Homes — Home">
-        <img src="images/logo-reversed.png" alt="Maple Ridge Homes">
+      <a href="index.html" class="lockup" aria-label="Maple Ridge Homes — Home">
+        <img src="images/leaf.png" alt="">
+        <span class="lockup-text">Maple Ridge<br>Homes</span>
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html" class="active">About</a></li>
-        <li><a href="process.html">Our Process</a></li>
-        <li><a href="build-a-home.html">Build a Home</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="build-a-home.html">Build</a></li>
         <li><a href="renovations.html">Renovations</a></li>
         <li><a href="installations.html">Installations</a></li>
         <li><a href="testimonials.html">Testimonials</a></li>
@@ -38,125 +41,86 @@
   </nav>
 
   <div class="mobile-menu">
-    <a href="index.html">Home</a>
-    <a href="about.html" class="active">About</a>
-    <a href="process.html">Our Process</a>
-    <a href="build-a-home.html">Build a Home</a>
-    <a href="renovations.html">Renovations</a>
-    <a href="installations.html">Installations</a>
-    <a href="testimonials.html">Testimonials</a>
-    <a href="#contact" class="btn">Book a Consultation</a>
+    <a href="index.html"><span class="idx">01</span>Home</a>
+    <a href="about.html" class="active"><span class="idx">02</span>About</a>
+    <a href="process.html"><span class="idx">03</span>Process</a>
+    <a href="build-a-home.html"><span class="idx">04</span>Build a Home</a>
+    <a href="renovations.html"><span class="idx">05</span>Renovations</a>
+    <a href="installations.html"><span class="idx">06</span>Installations</a>
+    <a href="testimonials.html"><span class="idx">07</span>Testimonials</a>
+    <p class="menu-contact">226-455-8076 &middot; info@mapleridgehomes.co</p>
   </div>
 
-  <!-- ============ SECTION 1 — HERO ============ -->
-  <header class="hero hero-page">
-    <div class="hero-media single">
-      <div class="hero-pane" style="background-image: url('images/gallery-1.jpg');"></div>
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Real Roots. Elevated Standards.</h1>
+  <!-- ============ HERO ============ -->
+  <header class="hero-photo">
+    <div class="hero-img" style="background-image: url('images/gallery-1.jpg');"></div>
+    <div class="hero-inner">
+      <span class="kicker">About Us</span>
+      <h1 data-kinetic data-kinetic-delay="0.25">Real Roots. Elevated Standards.</h1>
       <p class="hero-sub">Second-generation building — with a standard refined through decades of hands-on experience.</p>
     </div>
   </header>
 
   <main>
 
-    <!-- ============ SECTION 2 — MITCHELL'S STORY ============ -->
-    <section class="bg-cream reveal">
+    <!-- Story -->
+    <section class="editorial">
+      <span class="ghost-num" aria-hidden="true">01</span>
       <div class="container">
-        <div class="two-col">
-          <div class="col-text">
-            <p class="section-label">Our Story</p>
-            <h2 class="section-heading">Who We Are</h2>
-            <p style="margin-bottom: 1rem;">Maple Ridge Homes was built on a simple principle: do the work right, every time. I'm Mitchell Flach — the owner and lead installer behind every project we take on.</p>
-            <p style="margin-bottom: 1rem;">Construction runs in my family. With 35+ years of family building experience, I grew up on job sites learning from people who took real pride in their craft. Today, I bring that same standard to every tile, floor, and installation we complete.</p>
-            <p>We're not a large crew sending strangers to your home. When you hire Maple Ridge, you work directly with me — from the first call to the final walkthrough.</p>
-          </div>
-          <div class="col-img">
-            <img src="images/hero-3.jpg" alt="Custom home built by Maple Ridge Homes, black siding with natural wood entry" loading="lazy">
-          </div>
+      <div class="split media-right ">
+        <div class="split-media reveal"><img src="images/hero-3.jpg" alt="Custom home built by Maple Ridge Homes, black siding with natural wood entry" loading="lazy"></div>
+        <div class="split-copy">
+          <span class="kicker">Our Story</span>
+          <h2 data-kinetic data-kinetic-scroll>Who We Are</h2>
+          <p>Maple Ridge Homes was built on a simple principle: do the work right, every time. I'm Mitchell Flach — the owner and lead installer behind every project we take on.</p>
+          <p>Construction runs in my family. With 35+ years of family building experience, I grew up on job sites learning from people who took real pride in their craft. Today, I bring that same standard to every tile, floor, and installation we complete.</p>
+          <p>We're not a large crew sending strangers to your home. When you hire Maple Ridge, you work directly with me — from the first call to the final walkthrough.</p>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Pillars -->
+    <section class="editorial alt">
+      <span class="ghost-num" aria-hidden="true">02</span>
+      <div class="container">
+        <span class="kicker">Our Standards</span>
+        <h2 data-kinetic data-kinetic-scroll>What We Stand For</h2>
+        <p class="lede">Seven principles that guide every project we take on.</p>
+        <div class="feature-grid cols-4 stagger-group">
+          <div class="feature"><span class="f-num">01</span><h3>Craftsmanship</h3><p>Every surface, every joint, every finish — done to a standard worth putting your name on.</p></div>
+          <div class="feature"><span class="f-num">02</span><h3>Structural Integrity</h3><p>We build the right way, not the fast way. No shortcuts on the things that matter.</p></div>
+          <div class="feature"><span class="f-num">03</span><h3>Clarity</h3><p>You always know what's happening, what it costs, and what comes next.</p></div>
+          <div class="feature"><span class="f-num">04</span><h3>Organization</h3><p>Every project is planned, scoped, and sequenced before work starts.</p></div>
+          <div class="feature"><span class="f-num">05</span><h3>Accountability</h3><p>We own the scope we quote and stand behind every install we complete.</p></div>
+          <div class="feature"><span class="f-num">06</span><h3>Respect</h3><p>For your home, your time, your budget, and your trust.</p></div>
+          <div class="feature"><span class="f-num">07</span><h3>Long-Term Value</h3><p>We build and install to last — not to get the next job fast.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- ============ SECTION 3 — SEVEN PILLARS ============ -->
-    <section class="bg-off-white reveal">
+    <!-- Why Maple Ridge -->
+    <section class="band-dark">
       <div class="container">
-        <p class="section-label">Our Standards</p>
-        <h2 class="section-heading">What We Stand For</h2>
-        <p>Seven principles that guide every project we take on.</p>
-        <div class="pillar-grid stagger-group">
-          <div class="pillar">
-            <span class="pillar-number">01</span>
-            <h3>Craftsmanship</h3>
-            <p>Every surface, every joint, every finish — done to a standard worth putting your name on.</p>
-          </div>
-          <div class="pillar">
-            <span class="pillar-number">02</span>
-            <h3>Structural Integrity</h3>
-            <p>We build the right way, not the fast way. No shortcuts on the things that matter.</p>
-          </div>
-          <div class="pillar">
-            <span class="pillar-number">03</span>
-            <h3>Clarity</h3>
-            <p>You always know what's happening, what it costs, and what comes next.</p>
-          </div>
-          <div class="pillar">
-            <span class="pillar-number">04</span>
-            <h3>Organization</h3>
-            <p>Every project is planned, scoped, and sequenced before work starts.</p>
-          </div>
-          <div class="pillar">
-            <span class="pillar-number">05</span>
-            <h3>Accountability</h3>
-            <p>We own the scope we quote and stand behind every install we complete.</p>
-          </div>
-          <div class="pillar">
-            <span class="pillar-number">06</span>
-            <h3>Respect</h3>
-            <p>For your home, your time, your budget, and your trust.</p>
-          </div>
-          <div class="pillar">
-            <span class="pillar-number">07</span>
-            <h3>Long-Term Value</h3>
-            <p>We build and install to last — not to get the next job fast.</p>
-          </div>
+        <span class="kicker">Why Maple Ridge</span>
+        <h2 data-kinetic data-kinetic-scroll>The Difference Is in the Details</h2>
+        <div class="feature-grid stagger-group">
+          <div class="feature"><h3>Licensed &amp; Insured</h3><p>Every project, every time — no exceptions.</p></div>
+          <div class="feature"><h3>3-Year Workmanship Warranty</h3><p>We back every installation we complete with a written guarantee.</p></div>
+          <div class="feature"><h3>Approved Products Only</h3><p>Mapei, Schluter, Prova, and Wedi systems. Products that perform.</p></div>
+          <div class="feature"><h3>Direct Communication</h3><p>You work with Mitchell — not a coordinator, not a subcontractor.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- ============ SECTION 4 — WHY MAPLE RIDGE ============ -->
-    <section class="bg-charcoal reveal">
-      <div class="container">
-        <h2 class="section-heading">Why Maple Ridge</h2>
-        <div class="points-grid stagger-group">
-          <div class="point">
-            <span class="point-label">Licensed &amp; Insured</span>
-            <p>Every project, every time — no exceptions.</p>
-          </div>
-          <div class="point">
-            <span class="point-label">3-Year Workmanship Warranty</span>
-            <p>We back every installation we complete with a written guarantee.</p>
-          </div>
-          <div class="point">
-            <span class="point-label">Approved Products Only</span>
-            <p>Mapei, Schluter, Prova, and Wedi systems. Products that perform.</p>
-          </div>
-          <div class="point">
-            <span class="point-label">Direct Communication</span>
-            <p>You work with Mitchell — not a coordinator, not a subcontractor.</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ============ SECTION 5 — CTA BAND ============ -->
+    <!-- ============ CTA ============ -->
     <section class="cta-band" id="contact">
       <div class="container">
-        <h2>Ready to Start Your Project?</h2>
-        <p>Tell us about your project — we respond within 24 hours. All consultations are free.</p>
-        <a href="mailto:info@mapleridgehomes.co" class="btn">Book a Consultation</a>
+        <span class="kicker">Free Consultation</span>
+        <h2 data-kinetic data-kinetic-scroll>Ready to Start Your Project?</h2>
+        <p class="cta-lede">Tell us about your project — we respond within 24 hours.</p>
+        <a href="mailto:info@mapleridgehomes.co" class="btn">Book a Consultation <span class="arrow">&rarr;</span></a>
         <p class="cta-contact-line"><a href="tel:2264558076">226-455-8076</a> &middot; <a href="mailto:info@mapleridgehomes.co">info@mapleridgehomes.co</a></p>
 
         <!-- Formspree: create a free account at formspree.io and replace YOUR_FORM_ID -->
@@ -165,7 +129,7 @@
           <input type="email" name="email" placeholder="Email Address" required>
           <input type="tel" name="phone" placeholder="Phone Number">
           <input type="text" name="project" placeholder="Project Type (Home Build, Renovation, Installation)">
-          <textarea name="message" placeholder="Tell us about your project" rows="5"></textarea>
+          <textarea name="message" placeholder="Tell us about your project" rows="4"></textarea>
           <button type="submit" class="btn">Send Message</button>
         </form>
       </div>
@@ -177,9 +141,12 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-col footer-logo">
-          <img src="images/logo-reversed.png" alt="Maple Ridge Homes">
-          <p>Maple Ridge Homes<br>Springwater, ON<br>Serving Simcoe County, Georgian Bay &amp; Muskoka</p>
+        <div class="footer-col">
+          <a href="index.html" class="lockup footer-lockup" aria-label="Maple Ridge Homes — Home">
+            <img src="images/leaf.png" alt="">
+            <span class="lockup-text">Maple Ridge<br>Homes</span>
+          </a>
+          <p>Springwater, ON<br>Serving Simcoe County, Georgian Bay &amp; Muskoka</p>
           <div class="footer-social">
             <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.7c0-.9.3-1.5 1.6-1.5h1.6V3.3c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v2.5H7.6V13h2.7v8h3.2z"/></svg></a>
             <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.3c2.5 0 2.8 0 3.8.1 1 0 1.5.2 1.8.3.5.2.8.4 1.1.7.3.3.5.6.7 1.1.1.3.3.9.3 1.8 0 1 .1 1.3.1 3.8s0 2.8-.1 3.8c0 1-.2 1.5-.3 1.8-.2.5-.4.8-.7 1.1-.3.3-.6.5-1.1.7-.3.1-.9.3-1.8.3-1 0-1.3.1-3.8.1s-2.8 0-3.8-.1c-1 0-1.5-.2-1.8-.3-.5-.2-.8-.4-1.1-.7-.3-.3-.5-.6-.7-1.1-.1-.3-.3-.9-.3-1.8 0-1-.1-1.3-.1-3.8s0-2.8.1-3.8c0-1 .2-1.5.3-1.8.2-.5.4-.8.7-1.1.3-.3.6-.5 1.1-.7.3-.1.9-.3 1.8-.3 1-.1 1.3-.1 3.8-.1zM12 2.2c-2.7 0-3 0-4 .1-1 0-1.8.2-2.4.5-.7.2-1.2.6-1.8 1.1-.5.6-.9 1.1-1.1 1.8-.3.6-.4 1.4-.5 2.4 0 1-.1 1.4-.1 4s0 3 .1 4c0 1 .2 1.8.5 2.4.2.7.6 1.2 1.1 1.8.6.5 1.1.9 1.8 1.1.6.3 1.4.4 2.4.5 1 0 1.4.1 4 .1s3 0 4-.1c1 0 1.8-.2 2.4-.5.7-.2 1.2-.6 1.8-1.1.5-.6.9-1.1 1.1-1.8.3-.6.4-1.4.5-2.4 0-1 .1-1.4.1-4s0-3-.1-4c0-1-.2-1.8-.5-2.4-.2-.7-.6-1.2-1.1-1.8-.6-.5-1.1-.9-1.8-1.1-.6-.3-1.4-.4-2.4-.5-1-.1-1.3-.1-4-.1zm0 4.8a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM18.4 5.6a1.2 1.2 0 1 1-2.3 0 1.2 1.2 0 0 1 2.3 0z"/></svg></a>
@@ -213,6 +180,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

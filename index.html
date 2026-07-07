@@ -11,19 +11,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body data-page="home">
+<body data-page="home" class="theme-dark">
+
+  <div class="curtain"><img src="images/leaf.png" alt=""></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
 
   <!-- ============ NAVIGATION ============ -->
   <nav class="site-nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Maple Ridge Homes — Home">
-        <img src="images/logo-reversed.png" alt="Maple Ridge Homes">
+      <a href="index.html" class="lockup" aria-label="Maple Ridge Homes — Home">
+        <img src="images/leaf.png" alt="">
+        <span class="lockup-text">Maple Ridge<br>Homes</span>
       </a>
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="process.html">Our Process</a></li>
-        <li><a href="build-a-home.html">Build a Home</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="build-a-home.html">Build</a></li>
         <li><a href="renovations.html">Renovations</a></li>
         <li><a href="installations.html">Installations</a></li>
         <li><a href="testimonials.html">Testimonials</a></li>
@@ -38,172 +42,191 @@
   </nav>
 
   <div class="mobile-menu">
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="process.html">Our Process</a>
-    <a href="build-a-home.html">Build a Home</a>
-    <a href="renovations.html">Renovations</a>
-    <a href="installations.html">Installations</a>
-    <a href="testimonials.html">Testimonials</a>
-    <a href="#contact" class="btn">Book a Consultation</a>
+    <a href="index.html" class="active"><span class="idx">01</span>Home</a>
+    <a href="about.html"><span class="idx">02</span>About</a>
+    <a href="process.html"><span class="idx">03</span>Process</a>
+    <a href="build-a-home.html"><span class="idx">04</span>Build a Home</a>
+    <a href="renovations.html"><span class="idx">05</span>Renovations</a>
+    <a href="installations.html"><span class="idx">06</span>Installations</a>
+    <a href="testimonials.html"><span class="idx">07</span>Testimonials</a>
+    <p class="menu-contact">226-455-8076 &middot; info@mapleridgehomes.co</p>
   </div>
-
-  <!-- ============ SECTION 1 — HERO ============ -->
-  <header class="hero">
-    <div class="hero-media">
-      <div class="hero-pane" style="background-image: url('images/hero-1.jpg');"></div>
-      <div class="hero-pane" style="background-image: url('images/hero-2.jpg');"></div>
-      <div class="hero-pane" style="background-image: url('images/hero-3.jpg');"></div>
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Exceeding Excellence to Live Your Dream.</h1>
-      <p class="hero-sub">Custom homes, renovations, and premium installations — planned properly and delivered clean.</p>
-      <a href="#contact" class="btn">Book a Consultation</a>
-    </div>
-  </header>
 
   <main>
 
-    <!-- ============ SECTION 2 — WELCOME STRIP ============ -->
-    <section class="welcome-strip bg-cream reveal">
-      <div class="container">
-        <div class="welcome-inner">
-          <h2>A Family-Built Business.</h2>
-          <p>Maple Ridge Homes is a second-generation building company rooted in Simcoe County. With 35+ years of family construction experience behind every project, we bring a level of care and precision that separates real craftsmanship from common contracting. Licensed, insured, and backed by a 3-year workmanship warranty.</p>
+    <!-- ============ ACT 1 — HERO ============ -->
+    <header class="hero-dark">
+      <div>
+        <canvas id="leaf-canvas" aria-hidden="true"></canvas>
+        <img class="hero-leaf-static" src="images/leaf.png" alt="">
+        <span class="kicker">Second-Generation Builder — Simcoe County</span>
+        <h1 data-kinetic data-kinetic-delay="0.9">Exceeding Excellence to Live Your Dream.</h1>
+        <p class="hero-sub">Homes, renovations, and premium installations — planned properly and delivered clean.</p>
+        <a href="#contact" class="btn">Book a Consultation <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="scroll-cue">Scroll</div>
+    </header>
+
+    <!-- ============ ACT 2 — THE HOUSE THAT BUILDS ITSELF ============ -->
+    <section class="house-section">
+      <div class="container house-stage">
+        <div class="house-copy">
+          <span class="kicker">How We Build</span>
+          <h2 data-kinetic data-kinetic-scroll>Planned on Paper. Proven on Site.</h2>
+          <p>Every project starts as a drawing and ends as something you live in. Scope, sequence, and materials are locked before the first shovel — so what we build matches what we promised.</p>
+          <ul class="house-phase-list">
+            <li>Site &amp; Lot</li>
+            <li>Foundation</li>
+            <li>Framing</li>
+            <li>Roof Structure</li>
+            <li>Doors &amp; Windows</li>
+          </ul>
+        </div>
+        <div class="house-figure">
+          <svg id="house-svg" viewBox="0 0 932 687" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+            <g class="house-glow">
+              <path class="glow-pane" d="M 732.9 384.0 L 689.3 409.2 L 689.3 347.6 L 732.9 322.4 Z"/>
+              <path class="glow-pane" d="M 582.6 470.8 L 538.9 496.0 L 538.9 434.4 L 582.6 409.2 Z"/>
+              <path class="glow-pane" d="M 248.0 361.6 L 320.7 403.6 L 320.7 336.4 L 248.0 294.4 Z"/>
+              <path class="glow-pane" d="M 369.2 431.6 L 441.9 473.6 L 441.9 406.4 L 369.2 364.4 Z"/>
+              <path class="glow-pane" d="M 655.3 470.8 L 616.5 493.2 L 616.5 417.6 L 655.3 395.2 Z"/>
+            </g>
+            <g class="ph ph-ground">
+              <path class="lot" d="M 417.7 151.6 L 912.4 437.2 L 514.7 666.8 L 20.0 381.2 Z"/>
+            </g>
+            <g class="ph ph-foundation">
+              <path d="M 417.7 202.0 L 781.4 412.0 L 514.7 566.0 L 151.0 356.0 Z"/>
+              <path d="M 781.4 437.2 L 781.4 412.0"/>
+              <path d="M 514.7 591.2 L 514.7 566.0"/>
+              <path d="M 151.0 381.2 L 151.0 356.0"/>
+              <path d="M 781.4 437.2 L 514.7 591.2 L 151.0 381.2"/>
+            </g>
+            <g class="ph ph-frame">
+              <path d="M 417.7 216.0 L 417.7 67.6"/>
+              <path d="M 757.2 412.0 L 757.2 263.6"/>
+              <path d="M 514.7 552.0 L 514.7 403.6"/>
+              <path d="M 175.2 356.0 L 175.2 207.6"/>
+              <path d="M 417.7 67.6 L 757.2 263.6 L 514.7 403.6 L 175.2 207.6 Z"/>
+              <path d="M 417.7 216.0 L 757.2 412.0 L 514.7 552.0 L 175.2 356.0 Z"/>
+              <path d="M 209.2 375.6 L 209.2 227.2"/>
+              <path d="M 345.0 454.0 L 345.0 305.6"/>
+              <path d="M 480.7 532.4 L 480.7 384.0"/>
+            </g>
+            <g class="ph ph-roof">
+              <path d="M 417.7 67.6 L 296.5 20.0 L 175.2 207.6"/>
+              <path d="M 757.2 263.6 L 635.9 216.0 L 514.7 403.6"/>
+              <path d="M 296.5 20.0 L 635.9 216.0"/>
+              <path d="M 175.2 207.6 L 514.7 403.6"/>
+              <path d="M 417.7 67.6 L 757.2 263.6"/>
+              <path d="M 175.2 207.6 L 296.5 20.0"/>
+              <path d="M 223.7 235.6 L 345.0 48.0"/>
+              <path d="M 272.2 263.6 L 393.5 76.0"/>
+              <path d="M 320.7 291.6 L 441.9 104.0"/>
+              <path d="M 369.2 319.6 L 490.4 132.0"/>
+              <path d="M 417.7 347.6 L 538.9 160.0"/>
+              <path d="M 466.2 375.6 L 587.4 188.0"/>
+              <path d="M 514.7 403.6 L 635.9 216.0"/>
+            </g>
+            <g class="ph ph-open">
+              <path d="M 655.3 470.8 L 616.5 493.2 L 616.5 417.6 L 655.3 395.2 Z"/>
+              <path d="M 732.9 384.0 L 689.3 409.2 L 689.3 347.6 L 732.9 322.4 Z"/>
+              <path d="M 582.6 470.8 L 538.9 496.0 L 538.9 434.4 L 582.6 409.2 Z"/>
+              <path d="M 248.0 361.6 L 320.7 403.6 L 320.7 336.4 L 248.0 294.4 Z"/>
+              <path d="M 369.2 431.6 L 441.9 473.6 L 441.9 406.4 L 369.2 364.4 Z"/>
+            </g>
+          </svg>
         </div>
       </div>
     </section>
 
-    <!-- ============ SECTION 3 — SERVICE CARDS ============ -->
-    <section class="bg-off-white reveal">
+    <!-- ============ ACT 3 — MANIFESTO ============ -->
+    <section class="manifesto">
       <div class="container">
-        <p class="section-label">What We Do</p>
-        <h2 class="section-heading">Built Around Three Services</h2>
-        <div class="card-grid stagger-group">
-          <div class="card">
-            <h3>Home Building</h3>
-            <p>From design to keys — we manage the full build with precision and accountability.</p>
-            <a href="build-a-home.html" class="text-link">Learn More &rarr;</a>
-          </div>
-          <div class="card">
-            <h3>Renovations</h3>
-            <p>Kitchens, bathrooms, and basements. Properly planned, tightly managed, and cleanly delivered.</p>
-            <a href="renovations.html" class="text-link">Learn More &rarr;</a>
-          </div>
-          <div class="card">
-            <h3>Installations</h3>
-            <p>Tile, flooring, waterproofing, and finish work. Premium systems. Real warranties.</p>
-            <a href="installations.html" class="text-link">Learn More &rarr;</a>
-          </div>
-        </div>
+        <p data-scrub-words>We build the right way, not the fast way. No shortcuts on the things that matter — and a written warranty on everything we finish.</p>
+        <div class="attribution">Mitchell Flach — Owner, Maple Ridge Homes</div>
       </div>
     </section>
 
-    <!-- ============ SECTION 4 — SERVICE AREA STRIP ============ -->
-    <section class="strip bg-charcoal reveal">
-      <div class="container">
-        <p class="strip-heading">Serving Simcoe County, Georgian Bay &amp; Muskoka</p>
-        <p class="strip-sub">Including Barrie, Springwater, Wasaga Beach, Collingwood, Midland, Orillia, Gravenhurst, and all surrounding communities.</p>
+    <!-- ============ ACT 4 — SERVICES ============ -->
+    <section class="services">
+      <div class="container" style="padding-bottom: 2rem;">
+        <span class="kicker">What We Do</span>
+      </div>
+      <div class="services-list">
+        <a class="service-row" href="build-a-home.html">
+          <span class="container-row">
+            <span class="num">01</span>
+            <span class="name">Home Building</span>
+            <span class="go">&rarr;</span>
+            <span class="desc">From design to keys — the full build, managed with precision and accountability.</span>
+          </span>
+        </a>
+        <a class="service-row" href="renovations.html">
+          <span class="container-row">
+            <span class="num">02</span>
+            <span class="name">Renovations</span>
+            <span class="go">&rarr;</span>
+            <span class="desc">Kitchens, bathrooms, and basements. Properly planned, tightly managed, cleanly delivered.</span>
+          </span>
+        </a>
+        <a class="service-row" href="installations.html">
+          <span class="container-row">
+            <span class="num">03</span>
+            <span class="name">Installations</span>
+            <span class="go">&rarr;</span>
+            <span class="desc">Tile, flooring, waterproofing, and finish work. Premium systems, real warranties.</span>
+          </span>
+        </a>
       </div>
     </section>
 
-    <!-- ============ SECTION 5 — PROCESS TEASER ============ -->
-    <section class="bg-cream reveal">
+    <!-- ============ ACT 5 — PROOF + MARQUEE ============ -->
+    <section class="proof">
       <div class="container">
-        <p class="section-label">How We Work</p>
-        <h2 class="section-heading">A Process Refined Over Decades</h2>
-        <div class="tri-grid stagger-group">
+        <div class="proof-grid">
           <div>
-            <h3>Consultation</h3>
-            <p>We start with your goals, timeline, and budget — so expectations are set properly before anything begins.</p>
-          </div>
-          <div>
-            <h3>Scope &amp; Quote</h3>
-            <p>We define the full scope and price it clearly. No guesswork, no change-order surprises.</p>
-          </div>
-          <div>
-            <h3>Build &amp; Deliver</h3>
-            <p>We manage every step and close out with a final walkthrough. Clean result, every time.</p>
-          </div>
-        </div>
-        <p style="margin-top: 2.5rem;"><a href="process.html" class="text-link">See Our Full Process &rarr;</a></p>
-      </div>
-    </section>
-
-    <!-- ============ SECTION 6 — TRUST BAR ============ -->
-    <section class="strip-taupe reveal" style="padding: 4rem 0;">
-      <div class="container">
-        <div class="tri-grid" style="margin-top: 0;">
-          <div class="stat">
             <span class="stat-big"><span data-count="35" data-suffix="+">35+</span></span>
             <span class="stat-small">Years of Family Building</span>
           </div>
-          <div class="stat">
+          <div>
             <span class="stat-big"><span data-count="3" data-suffix="-Year">3-Year</span></span>
             <span class="stat-small">Workmanship Warranty</span>
           </div>
-          <div class="stat">
+          <div>
             <span class="stat-big">Licensed &amp; Insured</span>
             <span class="stat-small">Every Project, Every Time</span>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- ============ SECTION 7 — PHOTO GALLERY ============ -->
-    <section class="bg-off-white reveal">
-      <div class="container">
-        <p class="section-label">Portfolio</p>
-        <h2 class="section-heading">Our Work — Built to Last</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="images/gallery-1.jpg" alt="Modern custom home exterior with black board-and-batten siding and natural wood entry" loading="lazy">
-            <div class="gallery-overlay"><span>View Project</span></div>
-          </div>
-          <div class="gallery-item">
-            <img src="images/hero-2.jpg" alt="Rear elevation of a custom home with a full-height prow window and wood accents" loading="lazy">
-            <div class="gallery-overlay"><span>View Project</span></div>
-          </div>
-          <div class="gallery-item">
-            <img src="images/gallery-2.jpg" alt="Aerial view of a completed custom home surrounded by fall colour" loading="lazy">
-            <div class="gallery-overlay"><span>View Project</span></div>
-          </div>
-          <div class="gallery-item tall">
-            <img src="images/interior-1.jpg" alt="Finished open-concept kitchen and great room with engineered hardwood flooring" loading="lazy">
-            <div class="gallery-overlay"><span>View Project</span></div>
-          </div>
-          <div class="gallery-item tall">
-            <img src="images/install-1.jpg" alt="Custom tiled shower with recessed niche and premium stone-look surround" loading="lazy">
-            <div class="gallery-overlay"><span>View Project</span></div>
-          </div>
-          <div class="gallery-item tall">
-            <img src="images/interior-2.jpg" alt="Floor-to-ceiling stone fireplace feature wall" loading="lazy">
-            <div class="gallery-overlay"><span>View Project</span></div>
-          </div>
-          <div class="gallery-item">
-            <img src="images/gallery-3.jpg" alt="Custom home rear elevation in winter with vaulted great-room windows" loading="lazy">
-            <div class="gallery-overlay"><span>View Project</span></div>
-          </div>
-          <div class="gallery-item tall">
-            <img src="images/install-3.jpg" alt="Completed glass shower with large-format tile" loading="lazy">
-            <div class="gallery-overlay"><span>View Project</span></div>
-          </div>
-          <div class="gallery-item tall">
-            <img src="images/interior-4.jpg" alt="Hardwood staircase with black metal railing" loading="lazy">
-            <div class="gallery-overlay"><span>View Project</span></div>
-          </div>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Barrie</span><span class="dot">&#9670;</span>
+          <span>Springwater</span><span class="dot">&#9670;</span>
+          <span>Wasaga Beach</span><span class="dot">&#9670;</span>
+          <span>Collingwood</span><span class="dot">&#9670;</span>
+          <span>Midland</span><span class="dot">&#9670;</span>
+          <span>Orillia</span><span class="dot">&#9670;</span>
+          <span>Gravenhurst</span><span class="dot">&#9670;</span>
+          <span>Bracebridge</span><span class="dot">&#9670;</span>
+          <span>Barrie</span><span class="dot">&#9670;</span>
+          <span>Springwater</span><span class="dot">&#9670;</span>
+          <span>Wasaga Beach</span><span class="dot">&#9670;</span>
+          <span>Collingwood</span><span class="dot">&#9670;</span>
+          <span>Midland</span><span class="dot">&#9670;</span>
+          <span>Orillia</span><span class="dot">&#9670;</span>
+          <span>Gravenhurst</span><span class="dot">&#9670;</span>
+          <span>Bracebridge</span><span class="dot">&#9670;</span>
         </div>
-        <p style="margin-top: 2.5rem; text-align: center;"><a href="testimonials.html" class="text-link">See More of Our Work &rarr;</a></p>
       </div>
     </section>
 
-    <!-- ============ SECTION 8 — CTA BAND ============ -->
+    <!-- ============ ACT 6 — CTA ============ -->
     <section class="cta-band" id="contact">
       <div class="container">
-        <h2>Ready to Start Your Project?</h2>
-        <p>Tell us about your project — we respond within 24 hours. All consultations are free.</p>
-        <a href="mailto:info@mapleridgehomes.co" class="btn">Book a Consultation</a>
+        <span class="kicker">Free Consultation</span>
+        <h2 data-kinetic data-kinetic-scroll>Ready to Start Your Project?</h2>
+        <p class="cta-lede">Tell us about your project — we respond within 24 hours.</p>
+        <a href="mailto:info@mapleridgehomes.co" class="btn">Book a Consultation <span class="arrow">&rarr;</span></a>
         <p class="cta-contact-line"><a href="tel:2264558076">226-455-8076</a> &middot; <a href="mailto:info@mapleridgehomes.co">info@mapleridgehomes.co</a></p>
 
         <!-- Formspree: create a free account at formspree.io and replace YOUR_FORM_ID -->
@@ -212,7 +235,7 @@
           <input type="email" name="email" placeholder="Email Address" required>
           <input type="tel" name="phone" placeholder="Phone Number">
           <input type="text" name="project" placeholder="Project Type (Home Build, Renovation, Installation)">
-          <textarea name="message" placeholder="Tell us about your project" rows="5"></textarea>
+          <textarea name="message" placeholder="Tell us about your project" rows="4"></textarea>
           <button type="submit" class="btn">Send Message</button>
         </form>
       </div>
@@ -224,9 +247,12 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-col footer-logo">
-          <img src="images/logo-reversed.png" alt="Maple Ridge Homes">
-          <p>Maple Ridge Homes<br>Springwater, ON<br>Serving Simcoe County, Georgian Bay &amp; Muskoka</p>
+        <div class="footer-col">
+          <a href="index.html" class="lockup footer-lockup" aria-label="Maple Ridge Homes — Home">
+            <img src="images/leaf.png" alt="">
+            <span class="lockup-text">Maple Ridge<br>Homes</span>
+          </a>
+          <p>Springwater, ON<br>Serving Simcoe County, Georgian Bay &amp; Muskoka</p>
           <div class="footer-social">
             <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.7c0-.9.3-1.5 1.6-1.5h1.6V3.3c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v2.5H7.6V13h2.7v8h3.2z"/></svg></a>
             <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.3c2.5 0 2.8 0 3.8.1 1 0 1.5.2 1.8.3.5.2.8.4 1.1.7.3.3.5.6.7 1.1.1.3.3.9.3 1.8 0 1 .1 1.3.1 3.8s0 2.8-.1 3.8c0 1-.2 1.5-.3 1.8-.2.5-.4.8-.7 1.1-.3.3-.6.5-1.1.7-.3.1-.9.3-1.8.3-1 0-1.3.1-3.8.1s-2.8 0-3.8-.1c-1 0-1.5-.2-1.8-.3-.5-.2-.8-.4-1.1-.7-.3-.3-.5-.6-.7-1.1-.1-.3-.3-.9-.3-1.8 0-1-.1-1.3-.1-3.8s0-2.8.1-3.8c0-1 .2-1.5.3-1.8.2-.5.4-.8.7-1.1.3-.3.6-.5 1.1-.7.3-.1.9-.3 1.8-.3 1-.1 1.3-.1 3.8-.1zM12 2.2c-2.7 0-3 0-4 .1-1 0-1.8.2-2.4.5-.7.2-1.2.6-1.8 1.1-.5.6-.9 1.1-1.1 1.8-.3.6-.4 1.4-.5 2.4 0 1-.1 1.4-.1 4s0 3 .1 4c0 1 .2 1.8.5 2.4.2.7.6 1.2 1.1 1.8.6.5 1.1.9 1.8 1.1.6.3 1.4.4 2.4.5 1 0 1.4.1 4 .1s3 0 4-.1c1 0 1.8-.2 2.4-.5.7-.2 1.2-.6 1.8-1.1.5-.6.9-1.1 1.1-1.8.3-.6.4-1.4.5-2.4 0-1 .1-1.4.1-4s0-3-.1-4c0-1-.2-1.8-.5-2.4-.2-.7-.6-1.2-1.1-1.8-.6-.5-1.1-.9-1.8-1.1-.6-.3-1.4-.4-2.4-.5-1-.1-1.3-.1-4-.1zm0 4.8a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM18.4 5.6a1.2 1.2 0 1 1-2.3 0 1.2 1.2 0 0 1 2.3 0z"/></svg></a>
@@ -260,6 +286,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

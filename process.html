@@ -13,17 +13,20 @@
 </head>
 <body data-page="process">
 
+  <div class="cursor-dot" aria-hidden="true"></div>
+
   <!-- ============ NAVIGATION ============ -->
-  <nav class="site-nav">
+  <nav class="site-nav scrolled">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Maple Ridge Homes — Home">
-        <img src="images/logo-reversed.png" alt="Maple Ridge Homes">
+      <a href="index.html" class="lockup" aria-label="Maple Ridge Homes — Home">
+        <img src="images/leaf.png" alt="">
+        <span class="lockup-text">Maple Ridge<br>Homes</span>
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="process.html" class="active">Our Process</a></li>
-        <li><a href="build-a-home.html">Build a Home</a></li>
+        <li><a href="process.html" class="active">Process</a></li>
+        <li><a href="build-a-home.html">Build</a></li>
         <li><a href="renovations.html">Renovations</a></li>
         <li><a href="installations.html">Installations</a></li>
         <li><a href="testimonials.html">Testimonials</a></li>
@@ -38,96 +41,72 @@
   </nav>
 
   <div class="mobile-menu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="process.html" class="active">Our Process</a>
-    <a href="build-a-home.html">Build a Home</a>
-    <a href="renovations.html">Renovations</a>
-    <a href="installations.html">Installations</a>
-    <a href="testimonials.html">Testimonials</a>
-    <a href="#contact" class="btn">Book a Consultation</a>
+    <a href="index.html"><span class="idx">01</span>Home</a>
+    <a href="about.html"><span class="idx">02</span>About</a>
+    <a href="process.html" class="active"><span class="idx">03</span>Process</a>
+    <a href="build-a-home.html"><span class="idx">04</span>Build a Home</a>
+    <a href="renovations.html"><span class="idx">05</span>Renovations</a>
+    <a href="installations.html"><span class="idx">06</span>Installations</a>
+    <a href="testimonials.html"><span class="idx">07</span>Testimonials</a>
+    <p class="menu-contact">226-455-8076 &middot; info@mapleridgehomes.co</p>
   </div>
 
-  <!-- ============ SECTION 1 — HERO ============ -->
-  <header class="hero hero-page">
-    <div class="hero-media single">
-      <div class="hero-pane" style="background-image: url('images/hero-2.jpg');"></div>
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Think Through to the Finish.</h1>
+  <!-- ============ HERO ============ -->
+  <header class="hero-photo">
+    <div class="hero-img" style="background-image: url('images/hero-2.jpg');"></div>
+    <div class="hero-inner">
+      <span class="kicker">Our Process</span>
+      <h1 data-kinetic data-kinetic-delay="0.25">Think Through to the Finish.</h1>
       <p class="hero-sub">A disciplined process from day one — so nothing gets missed and nothing gets rushed.</p>
     </div>
   </header>
 
   <main>
 
-    <!-- ============ SECTION 2 — 5-STEP PROCESS ============ -->
-    <div class="process-list">
-      <section class="process-step bg-cream" style="padding-top: 4rem;">
-        <div class="step-inner">
-          <span class="step-number">01</span>
-          <div>
-            <h3>Consultation</h3>
-            <p>We start with your goals, timeline, and budget — so expectations are aligned before any work begins. We ask the right questions upfront so nothing important gets missed down the road. No obligation, no pressure.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="process-step bg-off-white">
-        <div class="step-inner">
-          <span class="step-number">02</span>
-          <div>
-            <h3>Scope &amp; Plan</h3>
-            <p>We define the full scope in detail, confirm all materials and specifications, and build a clear plan before anything is ordered or scheduled. The scope is what we price, and what we deliver.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="process-step bg-cream">
-        <div class="step-inner">
-          <span class="step-number">03</span>
-          <div>
-            <h3>Quote &amp; Schedule</h3>
-            <p>You receive a clear, itemized quote — no vague estimates. We lock in the schedule, confirm sequencing, and ensure all decisions are made before work starts.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="process-step bg-off-white">
-        <div class="step-inner">
-          <span class="step-number">04</span>
-          <div>
-            <h3>Build &amp; Updates</h3>
-            <p>We manage the work with consistent communication. You're kept informed throughout — not left wondering. If something changes, you hear about it from us before it becomes a problem.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="process-step bg-cream">
-        <div class="step-inner">
-          <span class="step-number">05</span>
-          <div>
-            <h3>Final Walkthrough</h3>
-            <p>We complete a full walkthrough together, address any punch-list items, and close out the project properly. Every job ends with a signed-off, clean result — and a copy of your warranty.</p>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ============ SECTION 3 — WARRANTY STRIP ============ -->
-    <section class="strip strip-taupe reveal">
+    <!-- Steps -->
+    <section class="editorial">
+      <span class="ghost-num" aria-hidden="true">05</span>
       <div class="container">
-        <p style="font-size: var(--h3); font-family: var(--font-display); max-width: 860px; margin: 0 auto;">Every installation is backed by our 3-Year Workmanship Warranty — using Mapei, Schluter, Prova, and Wedi approved systems. That's not a promise. It's in writing.</p>
+        <span class="kicker">Five Steps</span>
+        <h2 data-kinetic data-kinetic-scroll>How Every Project Runs</h2>
+        <div class="step reveal">
+          <span class="step-num">01</span>
+          <div><h3>Consultation</h3><p>We start with your goals, timeline, and budget — so expectations are aligned before any work begins. We ask the right questions upfront so nothing important gets missed down the road. No obligation, no pressure.</p></div>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">02</span>
+          <div><h3>Scope &amp; Plan</h3><p>We define the full scope in detail, confirm all materials and specifications, and build a clear plan before anything is ordered or scheduled. The scope is what we price, and what we deliver.</p></div>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">03</span>
+          <div><h3>Quote &amp; Schedule</h3><p>You receive a clear, itemized quote — no vague estimates. We lock in the schedule, confirm sequencing, and ensure all decisions are made before work starts.</p></div>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">04</span>
+          <div><h3>Build &amp; Updates</h3><p>We manage the work with consistent communication. You're kept informed throughout — not left wondering. If something changes, you hear about it from us before it becomes a problem.</p></div>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">05</span>
+          <div><h3>Final Walkthrough</h3><p>We complete a full walkthrough together, address any punch-list items, and close out the project properly. Every job ends with a signed-off, clean result — and a copy of your warranty.</p></div>
+        </div>
       </div>
     </section>
 
-    <!-- ============ SECTION 4 — CTA BAND ============ -->
+    <!-- Warranty statement -->
+    <section class="band-taupe">
+      <div class="container">
+        <p>Every installation is backed by our 3-Year Workmanship Warranty — using Mapei, Schluter, Prova, and Wedi approved systems. That's not a promise. It's in writing.</p>
+      </div>
+    </section>
+
+
+    <!-- ============ CTA ============ -->
     <section class="cta-band" id="contact">
       <div class="container">
-        <h2>Ready to Start Your Project?</h2>
-        <p>Tell us about your project — we respond within 24 hours. All consultations are free.</p>
-        <a href="mailto:info@mapleridgehomes.co" class="btn">Book a Consultation</a>
+        <span class="kicker">Free Consultation</span>
+        <h2 data-kinetic data-kinetic-scroll>Ready to Start Your Project?</h2>
+        <p class="cta-lede">Tell us about your project — we respond within 24 hours.</p>
+        <a href="mailto:info@mapleridgehomes.co" class="btn">Book a Consultation <span class="arrow">&rarr;</span></a>
         <p class="cta-contact-line"><a href="tel:2264558076">226-455-8076</a> &middot; <a href="mailto:info@mapleridgehomes.co">info@mapleridgehomes.co</a></p>
 
         <!-- Formspree: create a free account at formspree.io and replace YOUR_FORM_ID -->
@@ -136,7 +115,7 @@
           <input type="email" name="email" placeholder="Email Address" required>
           <input type="tel" name="phone" placeholder="Phone Number">
           <input type="text" name="project" placeholder="Project Type (Home Build, Renovation, Installation)">
-          <textarea name="message" placeholder="Tell us about your project" rows="5"></textarea>
+          <textarea name="message" placeholder="Tell us about your project" rows="4"></textarea>
           <button type="submit" class="btn">Send Message</button>
         </form>
       </div>
@@ -148,9 +127,12 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-col footer-logo">
-          <img src="images/logo-reversed.png" alt="Maple Ridge Homes">
-          <p>Maple Ridge Homes<br>Springwater, ON<br>Serving Simcoe County, Georgian Bay &amp; Muskoka</p>
+        <div class="footer-col">
+          <a href="index.html" class="lockup footer-lockup" aria-label="Maple Ridge Homes — Home">
+            <img src="images/leaf.png" alt="">
+            <span class="lockup-text">Maple Ridge<br>Homes</span>
+          </a>
+          <p>Springwater, ON<br>Serving Simcoe County, Georgian Bay &amp; Muskoka</p>
           <div class="footer-social">
             <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.7c0-.9.3-1.5 1.6-1.5h1.6V3.3c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v2.5H7.6V13h2.7v8h3.2z"/></svg></a>
             <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.3c2.5 0 2.8 0 3.8.1 1 0 1.5.2 1.8.3.5.2.8.4 1.1.7.3.3.5.6.7 1.1.1.3.3.9.3 1.8 0 1 .1 1.3.1 3.8s0 2.8-.1 3.8c0 1-.2 1.5-.3 1.8-.2.5-.4.8-.7 1.1-.3.3-.6.5-1.1.7-.3.1-.9.3-1.8.3-1 0-1.3.1-3.8.1s-2.8 0-3.8-.1c-1 0-1.5-.2-1.8-.3-.5-.2-.8-.4-1.1-.7-.3-.3-.5-.6-.7-1.1-.1-.3-.3-.9-.3-1.8 0-1-.1-1.3-.1-3.8s0-2.8.1-3.8c0-1 .2-1.5.3-1.8.2-.5.4-.8.7-1.1.3-.3.6-.5 1.1-.7.3-.1.9-.3 1.8-.3 1-.1 1.3-.1 3.8-.1zM12 2.2c-2.7 0-3 0-4 .1-1 0-1.8.2-2.4.5-.7.2-1.2.6-1.8 1.1-.5.6-.9 1.1-1.1 1.8-.3.6-.4 1.4-.5 2.4 0 1-.1 1.4-.1 4s0 3 .1 4c0 1 .2 1.8.5 2.4.2.7.6 1.2 1.1 1.8.6.5 1.1.9 1.8 1.1.6.3 1.4.4 2.4.5 1 0 1.4.1 4 .1s3 0 4-.1c1 0 1.8-.2 2.4-.5.7-.2 1.2-.6 1.8-1.1.5-.6.9-1.1 1.1-1.8.3-.6.4-1.4.5-2.4 0-1 .1-1.4.1-4s0-3-.1-4c0-1-.2-1.8-.5-2.4-.2-.7-.6-1.2-1.1-1.8-.6-.5-1.1-.9-1.8-1.1-.6-.3-1.4-.4-2.4-.5-1-.1-1.3-.1-4-.1zm0 4.8a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM18.4 5.6a1.2 1.2 0 1 1-2.3 0 1.2 1.2 0 0 1 2.3 0z"/></svg></a>
@@ -184,6 +166,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
