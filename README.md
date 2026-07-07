@@ -29,21 +29,9 @@ Shared assets: `css/styles.css` (single stylesheet), `js/main.js` (all animation
 - **Logo on dark nav:** no reversed logo variant existed, so one was generated from the transparent master (wordmark recolored to Cream, leaf kept Wood Brown) — `images/logo-reversed.png`. Favicon generated from the leaf mark.
 - **Photos:** 15 photos selected from 31 Marni Lane (exteriors/drone) and the Brand Identity portfolio folder (interiors, tile, showers), optimized to max 1200px / under 300KB each.
 
-## First push to GitHub (one-time)
+## Netlify setup (one-time)
 
-The site is committed locally on `main` with the remote already set to `https://github.com/mapleridgehomes/Mapleridgehomes.git`. The push could not be completed automatically because this Mac has no GitHub credentials stored and the repo does not appear to exist yet. To finish:
-
-1. Create the repo at github.com (org `mapleridgehomes`, repo `Mapleridgehomes`) if it doesn't exist.
-2. Install and authenticate the GitHub CLI, then push:
-
-```bash
-brew install gh
-gh auth login          # follow the browser prompts
-cd ~/Desktop/MapleRidge/05_Marketing/Website
-git push -u origin main
-```
-
-Then in Netlify: **Add new site → Import from GitHub → Mapleridgehomes**. No build command, publish directory = repo root.
+The repo is live at `https://github.com/mapleridgehomes/Mapleridgehomes` (pushed July 6, 2026). In Netlify: **Add new site → Import from GitHub → Mapleridgehomes**. No build command, publish directory = repo root. Then point the `mapleridgehomes.co` domain at the Netlify site.
 
 ## Deploying updates
 
