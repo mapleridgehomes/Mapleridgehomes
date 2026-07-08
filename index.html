@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maple Ridge Homes | Home Building, Renovations &amp; Premium Installations — Simcoe County</title>
   <meta name="description" content="Home building, renovations, and premium tile and flooring installations across Simcoe County, Georgian Bay, and Muskoka. Licensed and insured.">
+  <link rel="canonical" href="https://mapleridgehomes.co/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maple Ridge Homes">
+  <meta property="og:title" content="Maple Ridge Homes | Home Building, Renovations &amp; Premium Installations — Simcoe County">
+  <meta property="og:description" content="Home building, renovations, and premium tile and flooring installations across Simcoe County, Georgian Bay, and Muskoka. Licensed and insured.">
+  <meta property="og:url" content="https://mapleridgehomes.co/">
+  <meta property="og:image" content="https://mapleridgehomes.co/images/film-01.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://mapleridgehomes.co/images/film-01.jpg">
+  <link rel="preload" as="image" href="images/film-hero.jpg">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +22,8 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="home" class="theme-dark">
+
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="curtain">
     <div class="pre-inner">
@@ -59,7 +71,7 @@
     <p class="menu-contact">226-455-8076 &middot; info@mapleridgehomes.co</p>
   </div>
 
-  <main>
+  <main id="main">
     <div class="scroll-thread" aria-hidden="true"></div>
 
     <!-- ============ CH 0 — HERO ============ -->
@@ -347,6 +359,7 @@
       <path class="glow-pane" d="M 462 392 L 538 392 L 538 556 L 462 556 Z"/>
       <path class="glow-pane" d="M 548 392 L 648 392 L 648 556 L 548 556 Z"/>
     </g>
+  </g></g>
     <g class="hotspots">
   <a href="build-a-home.html" class="hotspot" aria-label="Home Building">
     <title>Home Building</title>
@@ -370,7 +383,7 @@
   </a>
   <a href="renovations.html" class="hotspot" aria-label="Renovations">
     <title>Renovations</title>
-    <path d="M 376 560 L 624 560 L 624 606 L 376 606 Z" fill="#F8F4EE" fill-opacity="0.001"/>
+    <path d="M 330 545 L 670 545 L 670 665 L 330 665 Z" fill="#F8F4EE" fill-opacity="0.001"/>
     <circle class="hs-dot" cx="500" cy="583" r="5"/>
     <circle class="hs-ring" cx="500" cy="583" r="5"/>
     <g class="hs-pill">
@@ -379,7 +392,6 @@
     </g>
   </a>
     </g>
-  </g></g>
 </svg>
         </div>
       </div>
@@ -450,11 +462,26 @@
 
         <!-- Formspree: create a free account at formspree.io and replace YOUR_FORM_ID -->
         <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Email Address" required>
-          <input type="tel" name="phone" placeholder="Phone Number">
-          <input type="text" name="project" placeholder="Project Type (Home Build, Renovation, Installation)">
-          <textarea name="message" placeholder="Tell us about your project" rows="4"></textarea>
+          <div class="field">
+            <label for="cf-name">Name <span class="req">*</span></label>
+            <input type="text" id="cf-name" name="name" placeholder="Jane Carpenter" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email <span class="req">*</span></label>
+            <input type="email" id="cf-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="cf-phone">Phone</label>
+            <input type="tel" id="cf-phone" name="phone" placeholder="705 555 0100" autocomplete="tel" inputmode="tel">
+          </div>
+          <div class="field">
+            <label for="cf-project">Project type</label>
+            <input type="text" id="cf-project" name="project" placeholder="Home build, renovation, installation&hellip;">
+          </div>
+          <div class="field full">
+            <label for="cf-message">Your project</label>
+            <textarea id="cf-message" name="message" placeholder="Tell us about it &mdash; rooms, timeline, anything useful." rows="4"></textarea>
+          </div>
           <button type="submit" class="btn">Send Message</button>
         </form>
       </div>

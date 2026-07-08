@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Renovations | Maple Ridge Homes — Simcoe County</title>
   <meta name="description" content="Quality kitchen, bathroom, and basement renovations across Simcoe County, Georgian Bay, and Muskoka. Licensed and insured.">
+  <link rel="canonical" href="https://mapleridgehomes.co/renovations.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maple Ridge Homes">
+  <meta property="og:title" content="Renovations | Maple Ridge Homes — Simcoe County">
+  <meta property="og:description" content="Quality kitchen, bathroom, and basement renovations across Simcoe County, Georgian Bay, and Muskoka. Licensed and insured.">
+  <meta property="og:url" content="https://mapleridgehomes.co/renovations.html">
+  <meta property="og:image" content="https://mapleridgehomes.co/images/film-04.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://mapleridgehomes.co/images/film-04.jpg">
+  <link rel="preload" as="image" href="images/film-04.jpg">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +22,8 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="renovations">
+
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="cursor-dot" aria-hidden="true"></div>
 
@@ -61,7 +73,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
 
     <section class="editorial">
       <span class="ghost-num" aria-hidden="true">01</span>
@@ -129,11 +141,26 @@
 
         <!-- Formspree: create a free account at formspree.io and replace YOUR_FORM_ID -->
         <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Email Address" required>
-          <input type="tel" name="phone" placeholder="Phone Number">
-          <input type="text" name="project" placeholder="Project Type (Home Build, Renovation, Installation)">
-          <textarea name="message" placeholder="Tell us about your project" rows="4"></textarea>
+          <div class="field">
+            <label for="cf-name">Name <span class="req">*</span></label>
+            <input type="text" id="cf-name" name="name" placeholder="Jane Carpenter" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email <span class="req">*</span></label>
+            <input type="email" id="cf-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="cf-phone">Phone</label>
+            <input type="tel" id="cf-phone" name="phone" placeholder="705 555 0100" autocomplete="tel" inputmode="tel">
+          </div>
+          <div class="field">
+            <label for="cf-project">Project type</label>
+            <input type="text" id="cf-project" name="project" placeholder="Home build, renovation, installation&hellip;">
+          </div>
+          <div class="field full">
+            <label for="cf-message">Your project</label>
+            <textarea id="cf-message" name="message" placeholder="Tell us about it &mdash; rooms, timeline, anything useful." rows="4"></textarea>
+          </div>
           <button type="submit" class="btn">Send Message</button>
         </form>
       </div>
