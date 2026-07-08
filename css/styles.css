@@ -1344,3 +1344,137 @@ body:not(.theme-dark) a:focus-visible, body:not(.theme-dark) button:focus-visibl
 
 /* Cream section on the dark homepage: keep labels accessible */
 .theme-dark .edit-split .kicker { color: var(--wood-brown-dark); }
+
+/* ==========================================================================
+   Task 1 — 21st.dev-standard interactions
+   ========================================================================== */
+
+/* Scroll media expansion: hero photo breathes open from 85% to full bleed */
+.ch-hero .ch-frame {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(4.5% 7.5% 6% 7.5% round 16px);
+  will-change: clip-path;
+  overflow: hidden;
+}
+.reduced-motion .ch-hero .ch-frame { clip-path: none; }
+
+/* Dual hero CTAs */
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+.btn.btn-ghost { border-color: var(--cream); }
+.btn.btn-ghost::before { background-color: var(--cream); transform: scaleY(0); }
+.btn.btn-ghost:hover::before, .btn.btn-ghost:focus-visible::before { transform: scaleY(1); }
+.btn.btn-ghost:hover, .btn.btn-ghost:focus-visible { color: var(--charcoal); border-color: var(--cream); }
+
+/* Buttons: subtle scale on hover, 200ms */
+.btn { transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
+.btn:hover { transform: scale(1.02); }
+
+/* Cards: lift + deepen shadow */
+.gallery-item, .feature, .split-media, .job-card {
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.gallery-item:hover, .job-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 44px rgba(42, 46, 48, 0.28);
+}
+
+/* Gallery grain reveal: photos develop as they enter */
+.gallery-item img { filter: none; }
+.g-veiled img { filter: grayscale(0.55) blur(3px) brightness(0.85); transform: scale(0.965); opacity: 0.55; }
+.gallery-item img { transition: filter 0.9s var(--ease), transform 0.9s var(--ease), opacity 0.9s var(--ease); }
+.reduced-motion .g-veiled img { filter: none; transform: none; opacity: 1; }
+
+/* Frosted glass nav — deeper blur per spec */
+.site-nav.scrolled {
+  background-color: rgba(42, 46, 48, 0.85);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+/* ==========================================================================
+   Task 2 — Careers components
+   ========================================================================== */
+.jobs { background: var(--off-white); padding: 6rem 0; }
+
+.job-card {
+  background: var(--cream);
+  border-top: 3px solid var(--wood-brown);
+  padding: clamp(1.6rem, 4vw, 3rem);
+  margin-top: 2.2rem;
+  box-shadow: 0 2px 10px rgba(42, 46, 48, 0.07);
+}
+
+.job-card h3 {
+  font-family: var(--font-brand);
+  font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+
+.badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.6rem; }
+
+.badge {
+  font-size: var(--tiny);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--taupe);
+  color: var(--wood-brown-dark);
+}
+
+.badge.type { background: var(--taupe); color: var(--charcoal); border-color: var(--taupe); }
+
+.job-card h4 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--tiny);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--wood-brown-dark);
+  margin: 1.8rem 0 0.7rem;
+}
+
+.job-card ul { list-style: none; }
+.job-card ul li {
+  padding-left: 1.4rem;
+  position: relative;
+  margin-bottom: 0.45rem;
+}
+.job-card ul li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.75em;
+  width: 14px; height: 1px;
+  background: var(--wood-brown);
+}
+
+.job-card .comp {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  margin: 0.3rem 0 1.6rem;
+}
+
+.culture { background: var(--charcoal); color: var(--cream); padding: 7rem 0; text-align: center; }
+.culture p.note {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3.4vw, 2.2rem);
+  line-height: 1.45;
+  max-width: 30ch;
+  margin: 0 auto 1.8rem;
+}
+.culture .sign { font-family: var(--font-display); font-style: italic; color: var(--taupe); font-size: 1.1rem; }
+
+/* Mobile fit: hero title must never escape its chapter */
+@media (max-width: 700px) {
+  .ch-hero .ch-title h1 { font-size: clamp(2rem, 10.5vw, 2.9rem); max-width: 14ch; }
+  .chapter .ch-title h2 { font-size: clamp(2rem, 9vw, 3rem); }
+  .chapter .ch-meta { display: none; }
+  .btn { padding: 0.95rem 1.5rem; letter-spacing: 0.18em; }
+  .btn-row { gap: 0.7rem; }
+  .chapter .ch-title { bottom: 2.2rem; max-width: 92%; }
+  .chapter .ch-index { bottom: 1rem; font-size: 1.1rem; }
+}

@@ -301,6 +301,13 @@
         scrollTrigger: { trigger: ch, start: 'top bottom', end: 'bottom top', scrub: true }
       });
 
+      // gentle parallax: photo trails the scroll at ~0.3x
+      gsap.fromTo(img, { yPercent: -6 }, {
+        yPercent: 6,
+        ease: 'none',
+        scrollTrigger: { trigger: ch, start: 'top bottom', end: 'bottom top', scrub: 0.3 }
+      });
+
       if (title) {
         gsap.fromTo(title, { yPercent: 0 }, {
           yPercent: -30,
@@ -310,6 +317,22 @@
         });
       }
     });
+
+    // Scroll media expansion: the hero photo starts framed (rounded,
+    // inset) and breathes open to full bleed as you engage.
+    var heroFrame = document.querySelector('.ch-hero .ch-frame');
+    if (heroFrame) {
+      gsap.to(heroFrame, {
+        clipPath: 'inset(0% 0% 0% 0% round 0px)',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.ch-hero',
+          start: 'top top',
+          end: '45% top',
+          scrub: 0.4
+        }
+      });
+    }
 
     // Service titles drift laterally with scroll — nothing sits still
     gsap.utils.toArray('.service-row').forEach(function (row, i) {
@@ -515,6 +538,21 @@
             onUpdate: function () { el.textContent = Math.round(obj.val) + suffix; }
           });
         }
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     Gallery grain reveal — photos develop as they enter the viewport
+     ------------------------------------------------------------------ */
+  if (motionOK) {
+    gsap.utils.toArray('.gallery-item').forEach(function (item) {
+      item.classList.add('g-veiled');
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top 88%',
+        once: true,
+        onEnter: function () { item.classList.remove('g-veiled'); }
       });
     });
   }
