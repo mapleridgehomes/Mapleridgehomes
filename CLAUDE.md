@@ -1,5 +1,13 @@
 # Maple Ridge Homes Website — Working Rules
 
+## CURRENT MISSION: v5 fresh rebuild (decided July 8, 2026)
+Mitchell is scrapping the v4 DESIGN (not the repo). Plan, in order:
+1. **Content blueprint first** — walk Mitchell page by page, section by section; capture HIS words into `SITE_CONTENT.md` (single source of truth — he dictates, we draft in his voice, he approves each section). No code until the blueprint is approved.
+2. **Build v5 on a git branch** (`v5`) so the live v4 site stays intact as fallback. Blank-slate design using the frontend-design plugin + official GSAP skills (both installed at user scope).
+3. **3D centerpiece**: Three.js + GSAP scroll-driven 3D house build (procedural model of the Marni Lane prow house, brand materials) — build it as its own dedicated session.
+4. Keep and reuse: images/ (all optimized photos), qa_check.py, deploy pipeline, careers copy, accessibility standards below.
+Fable credits end July 12 — stay surgical, one page/section per session.
+
 Static site: HTML + CSS + vanilla JS + GSAP (CDN). No frameworks, no build step, no smooth-scroll libraries (Lenis froze real devices — native scroll only; all motion is scroll-scrubbed via ScrollTrigger).
 
 ## Workflow: page-by-page
