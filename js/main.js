@@ -1,6 +1,6 @@
 /* ==========================================================================
    MAPLE RIDGE HOMES — main.js v2
-   Lenis smooth scroll + GSAP/ScrollTrigger motion system.
+   GSAP/ScrollTrigger motion system on native scrolling.
    Signature pieces: leaf particle assembly (home hero) and the
    scroll-scrubbed self-building house. All motion gated behind
    prefers-reduced-motion and GSAP availability.
@@ -19,13 +19,11 @@
   var isHome = document.body.dataset.page === 'home';
 
   /* ------------------------------------------------------------------
-     Smooth scroll (Lenis) — desktop-feel scrolling, synced to GSAP
+     Scrolling is NATIVE. A smooth-scroll library froze the page for
+     real users when its animation loop stalled — never again. All the
+     cinematic motion comes from scroll-scrubbed animations, which work
+     perfectly with native scrolling.
      ------------------------------------------------------------------ */
-  if (motionOK && typeof window.Lenis !== 'undefined') {
-    var lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 0.95, autoRaf: true });
-    window.__lenis = lenis;
-    lenis.on('scroll', ScrollTrigger.update);
-  }
 
   /* ------------------------------------------------------------------
      Nav: glass on scroll, hide on scroll-down / show on scroll-up
@@ -74,29 +72,30 @@
   var curtain = document.querySelector('.curtain');
 
   if (curtain) {
+    // The curtain must NEVER trap the page. Its lift is a CSS transition
+    // (compositor-driven, no JS loop), triggered by plain timeouts, with
+    // a hard remove as the last line of defence.
     if (!motionOK) {
       curtain.classList.add('done');
     } else {
       var mark = curtain.querySelector('img');
       var count = curtain.querySelector('.pre-count');
-      var ctl = gsap.timeline({
-        onComplete: function () { curtain.classList.add('done'); }
-      });
-      if (mark) ctl.to(mark, { opacity: 1, duration: 0.4, ease: 'power1.out' }, 0);
-      if (count) {
-        var cobj = { v: 0 };
-        ctl.to(cobj, {
-          v: 100,
-          duration: 1.35,
-          ease: 'power2.inOut',
-          onUpdate: function () {
-            count.textContent = String(Math.round(cobj.v)).padStart(2, '0');
-          }
-        }, 0);
-      }
-      ctl.to(curtain, { yPercent: -100, duration: 0.7, ease: 'power3.inOut' }, '+=0.15');
-      // Safety: never leave the page covered if rAF stalls (throttled tab)
-      setTimeout(function () { curtain.classList.add('done'); }, 3600);
+      if (mark) mark.style.opacity = '1';
+
+      var start = Date.now();
+      var counting = setInterval(function () {
+        var p = Math.min((Date.now() - start) / 1300, 1);
+        if (count) count.textContent = String(Math.round(p * 100)).padStart(2, '0');
+        if (p >= 1) clearInterval(counting);
+      }, 40);
+
+      var lift = function () {
+        curtain.classList.add('lift');
+        setTimeout(function () { curtain.classList.add('done'); }, 900);
+      };
+      setTimeout(lift, 1450);
+      // Hard failsafe — remove no matter what
+      setTimeout(function () { curtain.classList.add('done'); }, 4000);
     }
   }
 

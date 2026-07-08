@@ -37,8 +37,6 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
 
 body {
   font-family: var(--font-body);
@@ -198,9 +196,12 @@ body:not(.theme-dark) .btn:hover, body:not(.theme-dark) .btn:focus-visible { col
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  transition: transform 0.75s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.curtain img { height: 56px; width: auto; opacity: 0; }
+.curtain.lift { transform: translateY(-101%); }
+
+.curtain img { height: 56px; width: auto; opacity: 0; transition: opacity 0.4s ease; }
 
 .reduced-motion .curtain, .curtain.done { display: none; }
 
